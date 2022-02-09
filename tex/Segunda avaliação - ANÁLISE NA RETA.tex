@@ -1,0 +1,155 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm]{geometry}
+\usepackage[brazil]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{authblk}
+
+\title{\textbf {Segunda Avaliação - Análise na Reta}}
+\author[1]{Daniel Alves de Lima}
+\date{}
+
+\newtheorem*{1}{Questão 1}
+\newtheorem*{2}{Questão 2}
+\newtheorem*{3}{Questão 3}
+\newtheorem*{4}{Questão 4}
+\newtheorem*{5}{Questão 5}
+\newtheorem*{6}{Questão 6}
+\newtheorem*{7}{Questão 7}
+\newtheorem*{8}{Questão 8}
+
+
+
+
+\begin{document}
+	
+\maketitle
+
+\begin{1}
+
+	Dado $A > 0$, tome $\delta = \min\{\frac32, \frac{2}{15A}\}$. Segue que, $x \in \Bbb R-\{3,-3\}, \ 0 < x-3 < \delta \implies 6 < x + 3 < \frac{15}{2} \ \text{e} \ 0 < x - 3 < \frac{2}{15A} \implies 0 < x^2 - 9 = (x+3)(x-3) < \frac{1}{A} \implies \frac{1}{x^2 - 9} > A$. Logo, $\lim_{x\to 3^+}\dfrac{1}{x^2 - 9} = +\infty$.
+
+\end{1}
+
+\begin{2}
+
+	Vejamos que $\lim_{x\to0}f(x) = 0$. Dado $\varepsilon > 0$, tome $\delta = \varepsilon$. Se $x \in \Bbb Q$, então $0 < |x| < \delta$ implica $f(x) = x$, ou seja, $|f(x)| = |x| < \varepsilon$. Se $x \notin \Bbb Q$, então $0 < |x| < \delta$ implica $f(x) = 0$, ou seja, $|f(x)| = 0 < \varepsilon$. Em qualquer caso, tem-se $0 < |x| < \delta \implies |f(x)| < \varepsilon$. Logo, $\lim_{x\to0}f(x) = 0$. Vejamos que $\lim_{y\to0}g(y) = 0$. Dado $\varepsilon > 0$, tome $\delta = \varepsilon$. Segue-se, $0 < |y| < \delta \implies |g(y)| = 0 < \varepsilon$. Logo, $\lim_{y\to0}g(y) = 0$. Para mostrar que não há $\lim_{x\to0}g(f(x))$, considere a sequência de racionais $x_n = \frac{1}{n}$, e a sequência de irracionais $y_n = \frac{\sqrt2}{n}$. Note que, $x_n \to 0$ e $y_n \to 0$, mas $g(f(x_n)) = g(\frac{1}{n}) = 0$ e $g(f(y_n)) = g(0) = 1$. Logo, não existe $\lim_{x\to0}g(f(x))$.
+
+\end{2}
+
+\begin{3}
+
+	\begin{itemize}
+		
+		\item Verdadeiro. 
+		
+		Sejam $X \subset \Bbb R$ e uma função $f:X \to \Bbb R$. Considere um ponto $a \in X$ tal que $a \notin X'$. Então, existe $\delta > 0$ tal que $(a - \delta, a + \delta) \cap X = \{a\}$. Dado $\varepsilon > 0$, tomando este $\delta$, segue que $x \in X, \ |x-a| < \delta \implies x = a \implies f(x) = f(a) \implies |f(x) - f(a)| = 0 < \varepsilon$. Logo, $f$ é contínua em $a$.
+		
+		Portanto, toda função é contínua nos pontos isolados de seu domínio. Como todos os pontos de $\Bbb Z$ são isolados, então qualquer função $f: \Bbb Z \to \Bbb R$ é contínua.
+		
+		\item Falso.
+		
+		A função contínua $f:(0,1] \to \Bbb R$, com $f(x) = \dfrac{1}{x}$, tem como domínio um intervalo limitado, porém sua imagem é ilimitada superiormente, pois $\lim_{x\to0}f(x) = +\infty$.
+		
+		\item Falso.
+		
+		A função contínua $f:(0,1) \to \Bbb R$, com $f(x) = x$, é tal que $f((0,1)) = (0,1)$, onde vemos que $f$ não assume máximo, nem mínimo.
+		
+		\item Falso.
+		
+		A função $f:(-\infty,0)\cup[1,+\infty) \to \Bbb R$, definida por $$f(x) = 
+		\begin{cases}
+		x-1, \text{se} \ x \geq 1 \\
+		x, \text{se} \ x < 0
+		\end{cases}$$
+		é uma bijeção contínua, porém sua inversa $f^{-1}: \Bbb R \to (-\infty,0)\cup[1,+\infty)$, onde $$f^{-1}(x) = 
+		\begin{cases}
+		x+1, \text{se} \ x \geq 0 \\
+		x, \text{se} \ x < 0
+		\end{cases}$$
+		é uma bijeção que não é contínua em $0$, pois $\lim\limits_{x\to0^+}f^{-1}(x) = 1$ e $\lim\limits_{x\to0^-}f^{-1}(x) = 0$, ou seja, não existe $\lim\limits_{x\to0}f^{-1}(x)$.
+		
+		\item Falso.
+		
+		A função $f: \Bbb R \to \Bbb R$, onde $$f(x) = \begin{cases}
+		1, \text{se} \ x \in \Bbb Z \\
+		0, \text{se} \ x \notin \Bbb Z
+		\end{cases}$$
+		é tal que $f|_{\Bbb Z} : \Bbb Z \to \Bbb R$ é contínua, mas $f$ não é contínua em nenhum ponto $n \in \Bbb Z$. 
+		
+		Com efeito, seja $n \in \Bbb Z$, temos que $\lim_{x\to n}f(x) = 0 \neq 1 = f(n)$. Logo, $f$ não é contínua em $n$.
+		
+		\item Falso.
+		
+		A função $f: \Bbb Z \to \Bbb R$ com $f(x) = k + 1$, é contínua. Já temos que $\mathcal{A} \subset \Bbb Z$. Para todo $x \in \Bbb Z$, tem-se $f(x) > k$. Então, $\Bbb Z \subset \mathcal{A}$, ou seja, $\Bbb Z = \mathcal{A}$ um conjunto que não é aberto.
+		
+		\item Falso.
+		
+		Seja $a > 0$. A função $f: [0,a] \to [0,+\infty)$, onde $f(x) = \sqrt[n]{x}$, não é lipschitziana, apesar de ser uniformemente contínua.
+		
+		Com efeito, como $f$ é contínua no compacto $[0,a]$ temos que $f$ é uniformemente contínua. Dado $\delta > 0$, escolhamos $x_{\delta}, y_{\delta} \in [0,a]$ tais que $x_{\delta}, y_{\delta} < (\sqrt[n-1]{\frac{1}{n\delta}})^n$. Então, segue que $\sum_{i=0}^{n-1}(\sqrt[n]{x_{\delta}})^i(\sqrt[n]{y_{\delta}})^{n-1-i} \leq \sum_{i=0}^{n-1}(\sqrt[n-1]{\frac{1}{n\delta}})^i(\sqrt[n-1]{\frac{1}{n\delta}})^{n-1-i} = \sum_{i=0}^{n-1}(\frac{1}{n\delta}) = n(\frac{1}{n\delta}) = \frac{1}{\delta}$. Assim, podemos concluir que $|\sqrt[n]{x_{\delta}} - \sqrt[n]{y_{\delta}}| \geq \delta|x_{\delta} - y_{\delta}|$. Logo, $f$ não é lipschitziana.
+		
+		\item Falso.
+		
+		Todo conjunto $X \subset \Bbb R$ não-enumerável possui ponto de acumulação. Com efeito, suponha que todos os pontos de $X$ são isolados. Seja $E \subset X$ um conjunto enumerável denso em $X$. Dado $x \in X$, tem-se $x \in \overline{E}$. Como $x \notin X'$, também deve ser $x \notin E'$, então $x \in E$. Concluímos que $X = E$, contradizendo a hipótese de $X$ ser não-enumerável. Logo, $X$ deve possuir ponto de acumulação.
+		
+		\item Verdadeiro.
+		
+		Como $f$ é contínua em um intervalo fechado limitado, temos que $f([a,b])$ é um intervalo e um conjunto compacto, ou seja, $f([a,b])$ também é um intervalo fechado limitado. Digamos que seja $f([a,b]) = [\alpha, \beta]$. Então, existe $x^* \in [a,b]$ tal que $\alpha = f(x^*) > 0$. Logo, este $\alpha > 0$ é tal que $f(x) \geq \alpha$, $\forall x \in [a,b]$.
+		
+		\item Falso.
+		
+		Primeiro, notemos que para todo $x \in \Bbb R$ tem-se $(|x| + 1)^2 \geq x^2 + 1$. Pondo $f(x) = (|x| + 1)^2$ e $g(x) = x^2 + 1$, temos que $\lim\limits_{x \to 0}f(x) = \lim\limits_{x \to 0}g(x) = 1$. Mas, não se verifica $f(x) < g(x)$ em hipótese alguma.
+		
+	\end{itemize}
+
+\end{3}
+
+\begin{4}
+	
+	Como $X$ é aberto e $a \in X$, existe $\varepsilon > 0$ tal que $(a-\varepsilon,a+\varepsilon) \subset X$. Seja uma sequência qualquer $(x_n) \subset \Bbb R$ com $limx_n = a$. Para este $\varepsilon > 0$, existe $n_0 \in \Bbb N$ tal que $n > n_0 \implies x_n \in (a-\varepsilon,a+\varepsilon) \subset X$, ou seja, $x_n \in X$ para todo $n > n_0$. Reciprocamente, suponhamos que $X$ não é aberto. Então, existe $a \in X$ tal que $a \notin int(X)$. Para cada $n \in \Bbb N$, podemos escolher um ponto $x_n \in (a - \frac{1}{n}, a+\frac{1}{n})$ com $x_n \notin X$. Por ser $|x_n - a| < \frac{1}{n}$, tem-se $\lim x_n = a$. Portanto, $(x_n)$ é uma sequência que converge para $a$, mas que $x_n \notin X$ para todo $n \in \Bbb N$, contradizendo a hipótese. Logo, $X$ deve ser um conjunto aberto.
+
+\end{4}
+
+\begin{5}
+
+	\begin{enumerate}[label=(\alph*)]
+		
+		\item Primeiro, vejamos que $(\overline{X})^c = int(X^c)$ para qualquer $X \subset \Bbb R$. Com efeito, 
+		$x \in (\overline{X})^c \iff x \notin \overline{X} \iff \exists(a,b) \ni x; \ (a,b) \cap X = \emptyset \iff \exists (a,b) \ni x; \ (a,b) \subset X^c \iff x \in int(X^c)$.
+		Pela definição de fronteira, é evidente que $\partial X = \overline{X} \cap \overline{X^c}$, ou seja, $(\partial X)^c = (\overline{X})^c \cup (\overline{X^c})^c$. Então, tem-se $(\partial X)^c = int(X^c) \cup int(X)$. Como $\Bbb R = \partial X \cup (\partial X)^c$, segue o resultado $\Bbb R = \partial X \cup int(X^c) \cup int(X)$.
+		
+		
+		\item A inclusão $X \cup \partial X \subset \overline{X}$ é óbvia. Dado $x \in \overline{X}$, podemos ter $x \in X$ ou $x \notin X$. Caso seja $x \notin X$, temos que $x \in X^c \subset \overline{X^c}$, ou seja, $x \in \overline{X} \cap \overline{X^c} = \partial X$. Então, tem-se $\overline{X} \subset X \cup \partial X$, e portanto, vale $\overline{X} = X \cup \partial X$.
+		
+		\item Como $X$ é aberto, seu complementar é fechado, isto é, $\overline{X^c} = X^c$. Segue que, $\partial X \cap X = (\overline{X} \cap X^c) \cap X = \overline{X} \cap (X^c \cap X) = \overline{X} \cap \emptyset = \emptyset$. Reciprocamente, dado $x \in X$, então $x \notin \partial X$, ou seja, $x \in int(X) \cup int(X^c)$. Se fosse $x \in int(X^c)$, teríamos $x \notin X$, um absurdo. Portanto, só pode ser $x \in int(X)$. Logo, $X$ é aberto.
+		
+		\item Como $X$ é fechado, simplesmente $\partial X \subset \overline{X} = X$. Reciprocamente, tem-se $\overline{X} = X \cup \partial X \subset X$. Então, $\overline{X} = X$, e portanto, $X$ é fechado.
+		
+	\end{enumerate}
+
+\end{5}
+
+\begin{6}
+	
+	Dado $a \in f^{-1}(B)$ tem-se $f$ contínua em $a$ e $f(a) \in B$. Então, existe $\delta_1 > 0$ tal que $(f(a)-\delta_1, f(a)+\delta_1) \subset B$. Para este $\delta_1 > 0$, existe $\delta_2 > 0$ tal que $x \in A, \ |x-a| < \delta_2 \implies f(x) \in (f(a)-\delta_1, f(a)+\delta_1) \implies f(x) \in B \implies x \in f^{-1}(B)$. Como $A$ é aberto, existe $\delta_3 > 0$ tal que $(a-\delta_3, a+\delta_3) \subset A$. Tomando $\delta = \min\{\delta_2, \delta_3\}$, segue que $(a-\delta, a+\delta) \subset f^{-1}(B)$ donde $f^{-1}(B) = int(f^{-1}(B))$. Logo, $f^{-1}(B)$ é aberto. Reciprocamente, dados $\varepsilon > 0$ e $a \in A$, tome $B = (f(a)-\varepsilon, f(a)+\varepsilon)$. Como $f(a) \in B$, tem-se $a \in f^{-1}(B)$. Então, existe $\delta > 0$ tal que $(a-\delta, a+\delta) \subset f^{-1}(B)$. Portanto, segue que $x \in A, \ |x-a| < \delta \implies x \in f^{-1}(B) \implies f(x) \in B \implies |f(x)-f(a)| < \varepsilon$. Logo, $f$ é contínua.
+	
+\end{6}
+
+\begin{7}
+	
+	Primeiro, vejamos o seguinte resultado: Seja uma função $f:\Bbb R \to \Bbb R$ contínua. Então, o conjunto $Z_f = \{x \in \Bbb R; \ f(x) = 0\}$ é fechado. Com efeito, seja $a \in \overline{Z_f}$, então há uma sequência $(x_n) \subset Z_f$ com $\lim x_n = a$. Como $f(x_n) = 0$, segue que $\lim f(x_n) = f(a) = 0$. Logo, $a \in Z_f$.
+	
+	Voltando à questão, temos que $f$ é derivável e que $f': \Bbb R \to \Bbb R$ é contínua. Pelo resultado acima, o conjunto $Z_{f'}$ dos pontos críticos de $f$ é fechado.
+	
+\end{7}
+
+\begin{8}
+	
+	Seja $a \in I$, como $\lim_{x\to a}C|x-a|^{\alpha} = 0$ devemos ter $\lim_{x\to a}|f(x) - f(a)| = 0$, ou seja, $\lim_{x\to a}f(x) = f(a)$. Então, $f$ é contínua em todo $a \in I$. Por outro lado, por ser $\alpha > 1$, existe $\beta > 0$ tal que $\alpha = 1 + \beta$. Então, para cada $a \in I$ temos que $|\frac{f(x) - f(a)}{x-a}| \leq C|x-a|^{\beta}$. Como $\lim_{x\to a}C|x-a|^{\beta} = 0$, devemos ter $\lim_{x\to a}|\frac{f(x) - f(a)}{x-a}| = 0$, ou seja, $\lim_{x\to a}\frac{f(x) - f(a)}{x-a}= f'(a) = 0$ para todo $a \in I$. Assim, $f$ é contínua com derivada nula em todo $I$, logo $f$ deve ser constante.
+	
+\end{8}
+
+\end{document}

@@ -1,0 +1,154 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm]{geometry}
+\usepackage[brazil]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{authblk}
+
+\title{\textbf {Primeira Avaliação - Análise na Reta}}
+\author[1]{Daniel Alves de Lima}
+\date{}
+
+\newtheorem*{1}{Questão 1}
+\newtheorem*{2}{Questão 2}
+\newtheorem*{3}{Questão 3}
+\newtheorem*{4}{Questão 4}
+\newtheorem*{5}{Questão 5}
+\newtheorem*{6}{Questão 6}
+\newtheorem*{7}{Questão 7}
+\newtheorem*{8}{Questão 8}
+
+
+
+
+\begin{document}
+	
+\maketitle
+
+\begin{1}
+
+Óbvio que $(1+r)^1 \geq 1+r$. Suponhamos por hipótese que vale $(1+r)^n \geq 1 + nr + n(n-1)\dfrac{r^2}{2}$. Segue que, $(1+r)^{n+1} \geq (1 + nr + n(n-1)\dfrac{r^2}{2})(1+r) = 1 + nr + n(n-1)\dfrac{r^2}{2} + r + nr^2 + n(n-1)\dfrac{r^3}{2} = 1 + (n+1)r + (n+1)n\dfrac{r^2}{2} + n(n-1)\dfrac{r^3}{2} \geq 1 + (n+1)r + (n+1)n\dfrac{r^2}{2}$. Logo, a hipótese vale para todo $n \in \Bbb N$.
+
+\end{1}
+
+\begin{2}
+
+	Pondo $x_n = \sqrt[n]n - 1$ (note que $x_n \geq 0$), segue que $n = (1 + x_n)^n > n(n-1)\dfrac{x_n^2}{2} \implies \dfrac{2}{n-1} > x_ n^2$, ou seja, $\sqrt{\dfrac{2}{n-1}} > x_n$. Então, tem-se $\lim x_n = 0$, e portanto, $\lim \sqrt[n]{n} = 1 + \lim x_n = 1$.
+
+\end{2}
+
+\begin{3}
+
+	\begin{enumerate}
+		
+		\item Multiplicando por $c^n$ em ambos os lados da primeira desigualdade, segue que $(x_{n+1}/x_n)c^n \leq c^{n+1} \implies x_n / c^n \geq x_{n+1} / c^{n+1}$ com $x_{n_0+1}/c^{n_0+1} \geq x_n/c^n$ para todo $n > n_0$. Portanto, esta subsequencia de $x_n/c^n$ de índices $n > n_0$ é monótona, e, limitada inferiormente por $0$ (pois seus termos são positivos) e pelo seu primeiro termo. Então, existe $\lim x_{n + n_0}/c^{n+n_0}$, que implica também existir $\lim x_n/c^n$. Sabendo que $\lim c^n = 0$, e por ser $x_n = (x_n/c^n)c^n$, podemos concluir $\lim x_n = \lim(x_n/c^n)\lim c^n = 0$, isto é, $\lim x_n = 0$.	
+		
+		\item Sejam $c' = 1/c$ e $y_n = 1/x_n$. Segue que $(1/y_{n+1})/(1/y_n) \geq 1/c' > 1$ implica $0 < y_{n+1}/y_n \leq c' < 1$ para todo $n > n_0$. Pelo o que foi provado no primeiro item, tem-se $\lim y_n = 0$, isto é, $\lim 1/x_n = 0$. Logo, $\lim x_n = \infty$.
+				
+	\end{enumerate}
+
+\end{3}
+
+\begin{4}
+	
+	\begin{enumerate}
+		
+		\item Seja $b = sup\{x_n\}$. Dado $\varepsilon > 0$, existe $n_0 \in \Bbb N$ tal que $b-\varepsilon < x_{n_0}$. Segue que, $n > n_0 \implies b - \varepsilon < x_{n_0} \leq x_n \leq b < b + \varepsilon \implies |x_n - b| < \varepsilon$. Logo, $\lim x_n = b$.
+		
+		\item Vejamos, por indução, que $(x_n)$ é não-decrescente. Simplesmente, $2 < 2 + \sqrt 2 \implies \sqrt 2 < \sqrt{2 + \sqrt 2}$, isto é, $x_1 < x_2$. Suponhamos que vale $x_n < x_{n+1}$. Segue que, $x_n + 2 < x_{n+1} + 2 \implies \sqrt{x_n + 2} < \sqrt{x_{n+1} + 2} \implies x_{n+1} < x_{n+2}$. 
+		
+		Novamente por indução, vejamos que $(x_n)$ é limitada superiormente por $2$. Temos que, $\sqrt 2 < 2$, isto é, $x_1 < 2$. Suponhamos que vale $x_n < 2$. Segue que, $x_n + 2 < 4 \implies \sqrt{x_n + 2} < 2 \implies x_{n+1} < 2$.
+		
+		Seja $b = sup\{x_n\}$, pelo primeiro item tem-se $\lim x_n = b$. Então, segue que $x_{n+1} = \sqrt{2 + x_n} \implies x_{n+1}^2 = 2 + x_n \implies (\lim x_n)^2 = 2 + \lim x_n \implies b^2 = 2 + b$. Como a sequencia é formada apenas por termos positivos (pois é limitada inferiormente por $\sqrt 2$) e a equação $b^2 - b - 2 = 0$ possui soluções $b = 2$ ou $b = -1$, só pode ser $\lim x_n = b = 2$.
+		
+	\end{enumerate}
+
+\end{4}
+
+\begin{5}
+
+	\begin{enumerate}[label=(\alph*)]
+		
+		\item Primeiramente, observe que $(a-b)^2 = a^2 - 2ab + b^2 \geq 0 \implies a^2 + b^2 \geq 2ab \implies a^2 + 2ab + b^2 \geq 4ab \implies (a+b)^2 \geq 4ab \implies \dfrac{a+b}{2} \geq \sqrt{ab}$. Suponhamos que vale $x_n \leq y_n$. Segue que, $y_n - x_n \geq 0 \implies (y_n - x_n)^2 \geq 0 \implies x_n^2 - 2x_ny_n + y_n^2 \geq 0 \implies x_n^2 + y_n^2 \geq 2x_ny_n \implies x_n^2 + 2x_ny_n + y_n^2 \geq 4x_ny_n \implies (x_n+y_n)^2 \geq 4x_ny_n \implies \dfrac{x_n+y_n}{2} \geq \sqrt{x_ny_n}$, ou seja, $x_{n+1} \leq y_{n+1}$.
+		
+		\item Simplesmente, $x_{n+1} = \sqrt{x_ny_n} = \sqrt{x_n}\sqrt{\dfrac{x_{n-1}+y_{n-1}}{2}} \geq \sqrt{x_n}\sqrt{\sqrt{x_{n-1}y_{n-1}}} = \sqrt{x_n}\sqrt{x_n} = x_n$, ou seja, $x_{n+1} \geq x_n$. Por (a), tem-se $y_{n+1} = \dfrac{x_n+y_n}{2} \leq \dfrac{2y_n}{2} = y_n$. As sequências são limitadas, pois $\sqrt{ab} \leq x_n \leq y_n \leq \dfrac{a+b}{2}$.
+		
+		\item Por (b), existem $\lim x_n$ e $\lim y_n$. Então, segue que $\lim y_n = \dfrac{\lim x_n + \lim y_n}{2} \implies \lim y_n = \lim x_n$.
+		 
+	\end{enumerate}
+
+\end{5}
+
+\begin{6}
+	
+	Sabendo que $\lim \sqrt[n]n = 1 < e/2$, existe $n_0 \in \Bbb N$ tal que $n > n_0 \implies \sqrt[n]n < e/2 \implies \ln \sqrt[n]n < \ln(e/2) = 1 - \ln(2) < 1 \implies \dfrac{\ln n}{n} < 1 - \ln(2) < 1$. Pelo teste da raiz, temos que $\sum \Bigr(\dfrac{\ln n}{n}\Bigr)^n$ converge. 
+	
+\end{6}
+
+\begin{7}
+	
+	Caso $r \leq 1$: Temos que $n > n^r \implies \dfrac{1}{n} < \dfrac{1}{n^r}$. Pelo teste da comparação, $\sum \dfrac{1}{n^r}$ diverge. Caso $r > 1$: Como a sequência das reduzidas é monótona, para ver que esta sequência é limitada bastar mostrar que há uma subsequência limitada. Daí, sendo monótona e limitada, a sequencia das reduzidas converge (isto é, a série converge). Vejamos que $S_{2n+1}$ é limitada. Simplesmente, $S_{2n+1} = 1 + \sum_{k=1}^n \Bigr( \dfrac{1}{(2k)^r} + \dfrac{1}{(2k+1)^r} \Bigr) < 1 + \sum_{k=1}^n \dfrac{2}{(2k)^r} = 1 + 2^{1-r}\sum_{k=1}^n \dfrac{1}{k^r} = 1 + 2^{1-r}S_n < 1 + 2^{1-r}S_{2n+1}$, ou seja, $S_{2n+1} < 1 + 2^{1-r}S_{2n+1}$. Resolvendo a desigualdade, tem-se $S_{2n+1} < \dfrac{1}{1-2^{1-r}}$ como queríamos.
+	
+\end{7}
+
+\begin{8}
+	
+	\begin{itemize}
+		\item Verdadeiro.
+		
+		Considere a função sobrejetiva $f: \Bbb Z \times \Bbb N: \to \Bbb Q$, definida por $f(p,q) = \dfrac{p}{q}$. Como $\Bbb Z \times \Bbb N$ é enumerável, então $\Bbb Q$ é enumerável.
+		
+		\item Verdadeiro. 
+		
+		Seja um intervalo aberto $(a,b)$ qualquer. Basta mostrar que existe irracional $x$ em $(a,b)$. Caso $a$ seja irracional: Temos que existe $n \in \Bbb N$ tal que $\dfrac{1}{n} < b-a$, ou seja, $a < a+\dfrac{1}{n} < b$ (pois $\dfrac{1}{n} > 0$). Tomando $x = a + \dfrac{1}{n}$, temos $x \in (a,b)$ com $x$ irracional. Caso $a$ seja racional: Existe natural $n \in \Bbb N$ tal que $\dfrac{\sqrt 3}{n} < b-a$, ou seja, $a < a+\dfrac{\sqrt 3}{n} < b$. Tomando $x = a + \dfrac{\sqrt 3}{n}$, temos $x \in (a,b)$ com $x$ irracional.
+		
+		\item Verdadeiro.
+		
+		Suponhamos que há $r \in \Bbb Q$ tal que $r^2 = 2$. Ponhamos $r$ na forma de fração, de modo que $r = p/q$ seja uma fração irredutível, onde $p \in \Bbb Z$ e  $q \in \Bbb Z/\{0\}$. Segue que, $(p/q)^2 = 2 \implies p^2 = 2q^2$. Então, $p$ deve ser par sob a forma $p = 2k$. Mas daí, poderíamos também concluir que $(2k)^2 = 2q^2 \implies 4k^2 = 2q^2 \implies 2k^2 = q^2$, isto é, $q$ também é par, e portanto, a fração $p/q$ não seria irredutível, um absurdo. Logo, não existe $r \in \Bbb Q$ tal que $r^2 = 2$.
+		
+		\item Falso.
+		
+		A sequência de termos $x_n = \dfrac{1 + (-1)^n}{2}$ é limitada e possui duas subsequências convergindo para valores diferentes. Basta ver que $x_{2n} = 1$ e $x_{2n-1} = 0$.
+		
+		\item Verdadeiro.
+		
+		Irei simplesmente demonstrar a questão 15 do capitulo 4 do livro \textit{"curso de análise real"}:
+		
+		Dada uma sequência $(x_n)$, um termo $x_p$ chama-se um ``termo destacado'' quando $x_p \geq x_n$ para todo $n > p$. Seja $P = \{p \in \Bbb N; x_p \, \text{é destacado}\}$. Se $P = \{p_1 < p_2 < ...\}$ for infinito, $(x_p)_{p \in P}$ é uma subsequência não-crescente de $(x_n)$. Se $P$ for finito (em particular, vazio), mostre que existe uma subsequência crescente de $(x_n)$. Conclua que toda sequência possui uma subsequência monótona.
+		
+		\begin{proof}
+			
+			O caso $P$ infinito é óbvio. Vejamos o caso $P$ finito: Tome $t = \text{máx}P$. Temos que $x_n$ não é destacado, para todo $n > t$. Portanto, se $n_1 > t$ então existe $n_2 > n_1$ tal que $x_{n_1} < x_{n_2}$. Novamente, por ser $n_2 > t$, existe $n_3 > n_2$ tal que $x_{n_2} < x_{n_3}$. Assim sucessivamente, podemos obter um subconjunto infinito $N' = \{n_1 < n_2 < n_3 < ...\}$ dos naturais com $x_{n_1} < x_{n_2} < x_{n_3} < ...$, isto é, uma subsequência crescente de $(x_n)$.
+			
+			Dada uma sequência $(x_n)$, $P$ pode ser finito ou infinito. Em qualquer caso, temos a existência de uma subsequência monótona.
+			
+		\end{proof}
+		
+		\item Falso.
+		
+		A sequência $x_n = n + \dfrac{1}{n}$ diverge para $+\infty$, e $y_n = -n$ diverge para $-\infty$. Mas, sua soma $x_n + y_n = \dfrac{1}{n}$ converge para $0$.
+		
+		\item Falso.
+		
+		As sequências de termos $x_n = \dfrac{1}{n^2 + n}$ e $y_n = \dfrac{1}{n}$ são tais que $x_n < y_n$ para todo $n \in \Bbb N$, mas $\lim x_n = \lim y_n = 0$.
+		
+		\item Falso.
+		
+		A sequência $x_n = (-1)^n$ possui valores de aderência $1$ e $-1$ (ou seja, não converge), mas $|x_n| = 1$ obviamente converge para $1$. 
+		
+		\item Verdadeiro.
+		
+		Simplesmente, $(a_n - b_n)^2 = a_n^2 - 2a_nb_n + b_n^2 \geq 0 \implies (a_n^2 + b_n^2)(1/2) \geq a_nb_n$. Pelo teste da comparação, temos que $\sum a_nb_n$ converge.
+		
+		\item Verdadeiro.
+		
+		Basta usar a desigualdade $(|a_n| - \dfrac{1}{n})^2 \geq 0$ e usar o teste da comparação. Segue que, $(|a_n| - \dfrac{1}{n})^2 = a_n^2 - \dfrac{2|a_n|}{n} + \dfrac{1}{n^2} \geq 0 \implies (a_n^2 + \dfrac{1}{n^2})(1/2) \geq \dfrac{|a_n|}{n}$. Como $\sum a_n^2$ e $\sum \dfrac{1}{n^2}$ convergem, logo $\sum \dfrac{a_n}{n}$ é (absolutamente) convergente.
+		
+		
+	\end{itemize}
+	
+\end{8}
+
+\end{document}

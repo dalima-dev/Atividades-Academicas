@@ -1,0 +1,284 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm]{geometry}
+\usepackage[brazil]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{authblk}
+
+\title{\textbf {Construção dos Números Reais via Cortes de Dedekind}}
+\author[1]{Daniel Alves de Lima}
+\date{}
+
+\newtheorem*{p1}{Proposição}
+
+\newtheorem*{t1}{Teorema 1}
+\newtheorem*{t2}{Teorema 2}
+\newtheorem*{t3}{Teorema 3}
+\newtheorem*{t4}{Teorema 4}
+\newtheorem*{t5}{Teorema 5}
+\newtheorem*{t6}{Teorema 6}
+\newtheorem*{t7}{Teorema 7}
+
+\newtheorem*{l1}{Lema 1}
+\newtheorem*{l2}{Lema 2}
+\newtheorem*{l3}{Lema 3}
+\newtheorem*{l4}{Lema 4}
+
+\begin{document}
+	
+\maketitle
+
+\noindent {\Large \textbf{Cortes de Dedekind}}
+\\\\
+\textbf{Definição}: Seja $\alpha \subset \Bbb Q$. Dizemos que $\alpha$ é um corte se satisfaz as condições:
+
+\begin{enumerate}
+	
+	\item $\emptyset \neq \alpha \neq \Bbb Q$.
+	\item Seja $q \in \Bbb Q$. Se $p \in \alpha$ e $q < p$, então $q \in \alpha$.
+	\item $\alpha$ não possui elemento máximo.
+	
+\end{enumerate}
+
+\noindent Vamos representar por $\mathcal C$ o conjunto de todos os cortes.
+
+\begin{p1}
+	Seja $r \in \Bbb Q$. O conjunto $r^* = \{x \in \Bbb Q; x < r\}$ é um corte.
+	
+	\begin{proof}
+		
+		Temos que $\dfrac{r}{2} \in r^*$ e $r+1 \notin r^*$. Então, $\emptyset \neq r^* \neq \Bbb Q$. Sejam $x \in \alpha$ e $y \in \Bbb Q$ tal que $y < x$, então $y < r$, e portanto, $y \in r^*$. Assim, fica satisfeita a segunda condição. Dado $x \in \alpha$, tem-se $x < \dfrac{x+r}{2} < r$ onde $\dfrac{x+r}{2} \in r^*$. Então, $\alpha$ não possui elemento máximo e vale a terceira condição.  
+		
+	\end{proof}
+	
+\end{p1}
+
+\noindent {\Large \textbf{Relação de Ordem em $\mathcal C$}}
+\\\\
+\textbf{Definição}: Sejam $\alpha \in \mathcal C$ e $\beta \in \mathcal C$. Definimos
+
+	\begin{enumerate}
+		
+		\item $\alpha \leq \beta$ se, e só se, $\alpha \subset \beta$.
+		\item $\alpha < \beta$ se, e só se, $\alpha \subset \beta$ e $\alpha \neq \beta$.
+	
+	\end{enumerate}
+
+É fácil verificar ''$\leq$`` é uma relação de ordem.
+
+\begin{l1}
+	
+	Sejam $\alpha \in \mathcal C$ e $x \in \Bbb Q$ com $x \notin \alpha$. Então $p < x$ para todo $p \in \alpha$.
+	
+	\begin{proof}
+		
+		Suponha que vale a hipótese e que existe $p \in \alpha$ tal que $p \geq x$. Como $x \notin \alpha$, só pode ser $p > x$. Então, tem-se $x \in \alpha$ um absurdo. Logo, deve ser $p < x$ para todo $p \in \alpha$.
+		
+	\end{proof}
+
+\noindent \textbf{Propriedade}: Sejam $\alpha \in \mathcal C$ e $\beta \in \mathcal C$. Então, $\alpha \leq \beta$ ou $\alpha \geq \beta$.
+
+	\begin{proof}
+		
+		Se $\alpha \subset \beta$, então $\alpha \leq \beta$. Se $\alpha \not \subset \beta$, então existe $x \in \Bbb Q$ tal que $x \in \alpha$ e $x \notin \beta$. Segue do lema que $p < x$ para todo $p \in \beta$. Segue que $p \in \alpha$ para todo $p \in \beta$, ou seja, $\beta \leq \alpha$.
+		
+	\end{proof}
+	
+	\end{l1}
+
+\noindent {\Large \textbf{Adição em $\mathcal C$}}
+
+	\begin{t1}
+		
+		Se $\alpha$ e $\beta$ são cortes, então $\alpha + \beta = \{a+b; a \in \alpha, b \in \beta\}$ (chama-se soma de $\alpha$ e $\beta$) também é um corte.
+		
+		\begin{proof}
+			
+			\begin{enumerate}
+				
+				\item Como $\alpha$ e $\beta$ não são vazios, existem $a \in \alpha$ e $b \in \beta$ tais que $a+b \in \alpha + \beta$. Então, $\alpha + \beta \neq \emptyset$. Como $\alpha \neq \Bbb Q$ e $\beta \neq \Bbb Q$, existem racionais $s$ e $t$ com $s \notin \alpha$ e $t \notin \beta$. Pelo lema 1, tem-se $a < s$ para todo $a \in \alpha$ e $b < t$ para todo $b \in \beta$. Então, $a+b < s+t$ para todo $a \in \alpha$ e todo $b \in \beta$. Logo, $s+t \notin \alpha + \beta$, e portanto, $\alpha + \beta \neq \Bbb Q$.
+				
+				\item Dado $x \in \alpha + \beta$, existem $a \in \alpha$ e $b \in \beta$ tal que $x = a + b$. Seja $y \in \Bbb Q$ tal que $y < x$. Segue que, $y < a + b \implies y - a < b \implies y -a \in \beta$. Então, tem-se $y = a + (y - a) \in \alpha + \beta$.
+				
+				\item Dado $x \in \alpha + \beta$, existem $a \in \alpha$ e $b \in \beta$ tal que $x = a + b$. Como $\alpha$ e $\beta$ não possuem máximo, existem racionais $s \in \alpha$ e $t \in \beta$ tal que $a < s$ e $b < t$. Então, tem-se $x = a + b < s + t$ onde $s + t \in \alpha + \beta$. Logo, $\alpha + \beta$ não possui elemento máximo.
+				
+			\end{enumerate}
+		
+		Assim, fica provado as três condições necessárias para que se tenha $\alpha + \beta \in \mathcal C$.
+			
+		\end{proof}
+		
+	\end{t1}
+
+\noindent {\Large \textbf{Propriedades da Adição}}
+
+A operação que associa a cada par $(\alpha, \beta)$ de elementos de $\mathcal C$ a sua soma $\alpha + \beta$ chamamos de adição e indicamos por $+$.
+
+	\begin{l2}
+		
+		Sejam $\alpha \in \mathcal C$, um racional $u < 0$ e $M_{\alpha}$ o conjunto das cotas superiores de $\alpha$. Então, existem $p \in \alpha$, $q \in M_{\alpha}$, $q \neq \text{mín}M_{\alpha}$ (caso exista este mínimo), tais que $p - q = u$.
+		
+		\begin{proof}
+			Exercício.
+		\end{proof}
+		
+	\end{l2}
+
+	\begin{t2}
+		
+		A adição satisfaz as propriedades:
+		
+		\begin{enumerate}		
+		
+			\item Associativa: $\alpha + (\beta + \gamma) = (\alpha + \beta) + \gamma$, $\forall \alpha, \beta, \gamma \in \mathcal C$.	
+			\item Comutatividade: $\alpha + \beta = \beta + \alpha$, $\forall \alpha, \beta \in \mathcal C$.	
+			\item Existência de Elemento Neutro: $\alpha + 0^* = \alpha$, $\forall \alpha \in \mathcal C$.
+			\item Inverso aditivo: $\forall \alpha \in \mathcal C$, $\exists \beta \in \mathcal C$; $\alpha + \beta = 0^*$.
+			\item Compatibilidade da adição com a ordem: $\alpha \leq \beta \implies \alpha + \gamma \leq \beta + \gamma$, $\forall \alpha, \beta, \gamma \in \mathcal C$.	
+			
+		\end{enumerate}
+	
+	\begin{proof}
+		
+		As duas primeiras propriedades são triviais decorrendo da associatividade e comutatividade em $\Bbb Q$.
+		
+		Dado $x \in \alpha + 0^*$, existem $a \in \alpha$ e $u < 0$, $u \in \Bbb Q$ tais que $x = a + u$. Segue que, $a + u < a \implies x < a \implies x \in \alpha$. Então, $\alpha + 0^* \subset \alpha$. Vejamos a inclusão contraria. Dado $x \in \alpha$, existe $a \in \alpha$ tal que $x < a$. Segue que, $x < a \implies x = a + (x - a) \in \alpha + 0^*$ donde $\alpha \subset \alpha + 0^*$. Assim fica provado a terceira propriedade.
+		
+		Seja $\alpha \in \mathcal C$. Considere o corte $\beta = \{p \in \Bbb Q; -p \in M_{\alpha} \ \text{e} \ -p \neq \text{mín}M_{\alpha}\}$ (Exercício!). Dado $x \in \alpha + \beta$, existem $a \in \alpha$ e $b \in \beta$ tais que $x = a + b$. Segue que, $b \in \beta \implies -b > a \implies a + b < 0 \implies x < 0 \implies x \in 0^*$. Então, $\alpha + \beta \subset 0^*$. Vejamos a inclusão contraria. Dado $x \in 0^*$, pelo lema anterior, existem $a \in \alpha$ e $-b \in M_{\alpha}$ com $-b \neq \text{mín}M_{\alpha}$, tais que $x = a - (-b)$ donde $x = a + b \in \alpha + \beta$. Então, $0* \subset \alpha + \beta$. Assim fica provado a quarta propriedade.
+		
+		Sejam $\alpha, \beta, \gamma \in \mathcal C$, com $\alpha \leq \beta$. Dado $x \in \alpha + \gamma$, existem $a \in \alpha$ e $c \in \gamma$ tais que $x = a + c$. Como $a \in \alpha \implies a \in \beta$. Logo, $x = a + c \in \beta + \gamma$. Ficando provado a quinta propriedade.
+		
+	\end{proof}
+
+	\end{t2}
+
+	\begin{t3}
+		
+		O inverso aditivo é único. Ou seja, se $\alpha + \beta = 0^*$ e $\alpha + \gamma = 0^*$, então $\beta = \gamma$.
+		
+		\begin{proof}
+			
+			$\beta = 0^* + \beta = (\gamma + \alpha) + \beta = \gamma + (\alpha + \beta) = \gamma + 0^* = \gamma$
+			
+		\end{proof}
+		
+	\end{t3}
+
+	\begin{t4}
+		
+		Unicidade do elemento neutro. Ou seja, se $\alpha + \gamma = \alpha$ para todo $\alpha \in \mathcal C$, então $\gamma = 0^*$.
+		
+		\begin{proof}
+			
+			Simplesmente, $0^* + \gamma = 0^* \implies \gamma = 0^*$.
+			
+		\end{proof}
+		
+	\end{t4}
+
+\noindent {\Large \textbf{Multiplicação em $\mathcal C$}}
+
+	\begin{t5}
+		
+		Sejam $\alpha, \beta \in \mathcal C$, com $\alpha > 0^*$ e $\beta > 0^*$. Então, $\gamma = \Bbb Q_{\leq 0} \cup \{ab; a \in \alpha, b \in \beta, a > 0, b > 0\}$ é um corte. 
+		
+		\begin{proof}
+			
+			Exercício.
+			
+		\end{proof}
+		
+	\end{t5}
+
+\textbf{Definição}: Sejam $\alpha \in \mathcal C$ e $\beta \in \mathcal C$. Definimos a multiplicação (ou produto) de $\alpha$ e $\beta$ por:
+\\
+	\begin{equation} \alpha \cdot \beta =
+		\begin{cases}
+			\Bbb Q_{\leq 0} \cup \{ab; a \in \alpha, b \in \beta, a > 0, b > 0\},  & \text{se $\alpha > 0^*$ e $\beta > 0^*$} \\
+			0^*, & \text{se $\alpha = 0^*$ ou $\beta = 0^*$} \\
+			-\{(-\alpha)\beta\}, & \text{se $\alpha < 0^*$ e $\beta > 0^*$} \\
+			-\{\alpha(-\beta)\}, & \text{se $\alpha > 0^*$ e $\beta < 0^*$} \\
+			(-\alpha)(-\beta), & \text{se $\alpha < 0^*$ e $\beta < 0^*$}
+		\end{cases}
+	\end{equation}
+
+\bigskip
+
+\noindent {\Large \textbf{Propriedades da Multiplicação}}
+
+	\begin{l3}
+		
+		Sejam $\alpha > 0^*$ um corte e $u \in \Bbb Q$ com $0 < u < 1$. Então, existem racionais $p \in \alpha, q \in M_{\alpha}$, com $q \neq \text{mín}M_{\alpha}$ (caso exista), tais que $\frac{p}{q} = u$.
+		
+		\begin{proof}
+			
+			Exercício.
+			
+		\end{proof}
+		
+	\end{l3}
+
+	\begin{t6}
+		
+		Sejam $\alpha, \beta$ e $\gamma$ cortes quaisquer. A multiplicação possui as seguintes propriedades:
+		
+		\begin{enumerate}
+			
+			\item $(\alpha \cdot \beta)\gamma = \alpha \cdot (\beta \cdot \gamma)$.
+			\item $\alpha \cdot \beta = \beta \cdot \alpha$.
+			\item $\alpha \cdot 1^* = \alpha$.
+			\item Se $\alpha \neq 0^*$, existe $\beta \in \mathcal C$ tal que $\alpha \cdot \beta = 1^*$.
+			\item $\alpha \cdot (\beta + \gamma) = \alpha \cdot \beta + \alpha \cdot \gamma$.
+			\item $\alpha \leq \beta$ e $0^* \leq \gamma \implies \alpha \cdot \gamma \leq \beta \cdot \gamma$.
+			
+		\end{enumerate}
+	
+	\begin{proof}
+		
+		As duas primeiras propriedades são triviais.
+		
+		Se $\alpha > 0^*$, note que $\alpha \cdot 1^* = \Bbb Q_{\leq 0} \cup \{ab; a \in \alpha, a > 0, 1 > b > 0\}$. Tem-se $x \in \alpha \cdot 1^* \ \text{e} \ x \leq 0 \implies x \in \alpha$. Também, $x \in \alpha \cdot 1^* \ \text{e} \ x > 0 \implies x = au$ com $a \in \alpha$, $a > 0$, e $0 < u < 1$. Então, $au < a \implies x = au \in \alpha$, ou seja, $\alpha \subset \alpha \cdot 1^*$. Para a inclusão contraria, temos que $x \in \alpha \ \text{e} \ x \leq 0 \implies x \in \alpha \cdot 1^*$, também $x \in \alpha e x > 0 \implies \exists a \in \alpha$, com $x < a$. Assim, $x = a \cdot \frac{x}{a} \in \alpha \cdot 1^*$. Então, tem-se $\alpha \subset \alpha \cdot 1^*$. Se $\alpha = 0^*$, pela definição temos $\alpha \cdot 1^* = 0^* \cdot 1^* = 0^* = \alpha$. Se $\alpha < 0^*$, então $\alpha \cdot 1^* = -[(-\alpha) \cdot 1^*] = -[-\alpha] = \alpha$. Fica provado a terceira propriedade.
+		
+	\end{proof}
+		
+		As outras propriedades ficam como exercício.
+		
+	\end{t6}
+
+\noindent {\Large \textbf{Teorema do Supremo}}
+
+Um subconjunto $A \subset \mathcal C$ é dito \textit{limitado superiormente} se existe um corte $m$ tal que $\alpha \leq m$, para todo $\alpha \in A$.
+
+	\begin{l4}
+		
+		Seja A um subconjunto de $\mathcal C$, não-vazio e limitado superiormente. Então, $$\gamma = \bigcup_{\alpha \in A} \alpha$$ é um corte.
+		
+		\begin{proof}
+			
+			Sendo $A \neq \emptyset$, existe $\alpha \in A$, e, como $\alpha \neq \phi$, então $\gamma \neq \phi$. Sendo $A$ limitado superiormente, existe um corte $m$ tal que $\alpha \leq m$, para todo $\alpha \in A$. Como $m$ é um corte, existe $x \in \Bbb Q$ com $x \notin m$. Daí, para todo $\alpha \in A$, $x \notin \alpha \implies x \notin \gamma$, e portanto, $\gamma \neq \Bbb Q$. Assim, fica satisfeita a primeira condição.
+			
+			Sejam $p \in \Bbb Q$ e $q \in \Bbb Q$, com $p \in \gamma$ e $q < p$. Temos que $p \in \alpha$ para algum $\alpha \in A \ \text{e} \ q < p \implies q \in \alpha \implies q \in \gamma$. Assim, fica satisfeita a segunda condição.
+			
+			Dado $p \in \gamma$, existe $\alpha \in A$ tal que $p \in \alpha$. Como $\alpha$ não tem máximo, existe $t \in \alpha$, com $t > p$. Note que $t \in \gamma$. Assim, para todo $p \in \gamma$, existe $t \in \gamma$ tal que $p < t$. Logo, $\gamma$ não possui máximo, sendo satisfeita a terceira condição.
+			
+		\end{proof}
+		
+	\end{l4}
+
+	\begin{t7}
+		
+		Se $A \subset \mathcal C$ é não-vazio e limitado superiormente, então $A$ admite supremo.
+		
+		\begin{proof}
+			
+			Seja $\gamma = \bigcup_{\alpha \in A}\alpha$. Pelo lema anterior, $\gamma$ é um corte. Segue que, para todo $\alpha \in A$ tem-se $\gamma \supset \alpha$, ou seja, $\gamma \geq \alpha$. Então, $\alpha$ é cota superior de $A$. Por outro lado, se $\gamma'$ é uma cota superior qualquer de $A$, temos que $\gamma' \geq \alpha$ para todo $\alpha \in A$, e portanto, $\gamma' \supset \alpha$ para todo $\alpha \in A$. Então, $\gamma' \supset \gamma = \bigcup_{\alpha \in A}\alpha$, ou seja, $\gamma' \geq \gamma$. Logo, $\gamma$ é a menor cota superior de $A$, isto é, $\gamma = \sup A$.
+			
+		\end{proof}
+		
+	\end{t7}
+
+Com a propriedade do supremo em mãos, podemos então definir $\mathcal C$ como o \textit{conjunto dos números reais} que denotaremos por $\Bbb R$.
+
+\end{document}

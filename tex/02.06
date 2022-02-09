@@ -1,0 +1,152 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm]{geometry}
+\usepackage[brazil]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{tikz}
+\usepackage{authblk}
+
+\title{\textbf {Respostas da Primeira Lista Quinzenal}}
+\author[1]{Daniel Alves de Lima}
+\date{}
+
+\newtheorem*{1}{Exercício 1}
+\newtheorem*{2}{Exercício 2}
+\newtheorem*{3}{Exercício 3}
+\newtheorem*{4}{Exercício 4}
+\newtheorem*{5}{Exercício 5}
+
+\begin{document}
+	
+\maketitle
+
+\begin{1}
+
+Semigrupo:
+$\forall a,b,c \in \mathbb{R}$, $a \sim (b \sim c) = a \sim (b + c - bc) 
+= a + (b + c - bc) - a(b + c - bc) = a + b + c - bc - ab -ac + abc
+= (a + b - ab) + c - (a + b - ab)c = (a + b - ab) \sim c = (a \sim b) \sim c$
+\\
+
+\noindent Monoide: Temos que $0$ é o elemento neutro:
+$\forall a \in \mathbb{R}$, $a \sim 0 = a + 0 - a0 = 0 + a - 0a = 0 \sim a = a$
+\\
+
+Por último, $(\mathbb{R}, \sim)$ não é grupo pois $1$ não possui inverso. Com efeito,
+se houvesse um inverso $x \in \mathbb{R}$ de $1$, teríamos $1 \sim x = 0$ ou seja
+$1 = 1 + x - 1x = 0$ um absurdo.  
+
+\end{1}
+
+\begin{2}
+
+Se $\sim$ é uma relação de equivalência, então são satisfeitas as condições:
+
+ \begin{enumerate}
+	\item $e = aa^{-1} \in S$
+	\item $ab^{-1} \in S \Longrightarrow ba^{-1} \in S$
+	\item $ab^{-1} \in S \textrm{ e } bc^{-1} \in S \Longrightarrow ac^{-1} \in S$
+\end{enumerate}
+
+Temos que $S \neq \emptyset$, pois $e \in S$. Sejam dados $a \in S$ e $b \in S$. Pelo item 2, temos
+$b = be = be^{-1} \in S \Longrightarrow b^{-1} = eb^{-1} \in S$. Pelo item 3, temos $a = ae^{-1} \in S$
+e $b^{-1} = eb^{-1} \in S$ que implica $ab^{-1} \in S$. Logo, $S$ é subgrupo de $G$.
+\\*
+
+Reciprocamente, por $S$ ser subgrupo, temos:
+ \begin{enumerate}
+	\item $e = aa^{-1} \in S$
+	\item $ab^{-1} \in S \Longrightarrow ba^{-1} = (ab^{-1})^{-1} \in S$
+	\item $ab^{-1} \in S \textrm{ e } bc^{-1} \in S \Longrightarrow  ac^{-1} = (ab^{-1})(bc^{-1}) \in S$
+\end{enumerate}
+
+Logo, $\sim$ é uma relação de equivalência.
+
+
+\end{2}
+
+\begin{3}
+
+O grupo H gerado pelos elementos $C$ e $D$ é $\{I, C, C^2, C^3, D, CD, C^2D, C^3D\}$ bastando calcular
+as potencias do tipo $C^iD^j$ e $D^iC^j$ para determinar estes elementos. Com efeito,
+
+$C^2 = \begin{pmatrix}
+-1 & 0 \\
+0 & -1
+\end{pmatrix},
+C^3 = \begin{pmatrix}
+0 & -1 \\
+1 & 0
+\end{pmatrix},
+C^4 = D^2 = I$
+\\
+
+$CD = \begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix} = DC^3,
+C^2D = \begin{pmatrix}
+0 & -1 \\
+-1 & 0
+\end{pmatrix} = DC^2$
+\\
+
+$C^3D = \begin{pmatrix}
+-1 & 0 \\
+0 & 1
+\end{pmatrix} = DC$
+
+Sendo $D_4 = \{R, R^2, R^3, id, T_x, T_y, T_{1,3}, T_{2,4}\}$ o grupo de simetrias do quadrado, definimos uma bijeção do seguinte modo:
+
+\noindent
+$id \mapsto I$
+\\
+$R \mapsto C$
+\\
+$R^2 \mapsto C^2$
+\\
+$R^3 \mapsto C^3$
+\\
+$T_x \mapsto D$
+\\
+$T_{1,3} \mapsto CD$
+\\
+$T_y \mapsto C^2D$
+\\
+$T_{2,4} \mapsto C^3D$
+\\
+
+Notando que $RT_x = T_xR^3 = T_{1,3}$, $R^2T_x = T_xR^2 = T_ y$ e $R^3T_x = T_xR = T_{2,4}$, vemos que esta função é um isomorfismo entre $H$ e $D_4$.
+
+\end{3}
+
+\begin{4}
+
+A ida é trivial. Vejamos a recíproca. Dados $a \in S$ e $b \in S$, temos que $b^{-1} \in S$, e portanto, $ab^{-1} \in S$. Logo, $S$ é subgrupo de $G$ (Teorema 2.5 do capitulo 1, Hungerford).
+
+\end{4}
+
+\begin{5}
+
+a) $(AutG, \circ)$ é associativa: $\forall f,g,h \in AutG$, $\forall x \in G$;
+$f \circ (g \circ h)(x) = f(g \circ h(x)) = f(g(h(x))) = (f \circ g)(h(x)) = (f \circ g) \circ h(x)$,
+ou seja, $f \circ (g \circ h) = (f \circ g) \circ h$.
+
+Como a função identidade é o elemento neutro e todo $f \in AutG$ possui inversa $f^{-1} \in AutG$
+à esquerda e direita, logo $(AutG, \circ)$ é um grupo.
+\\
+
+\noindent b) $Aut\mathbb{Z} \simeq \mathbb{Z}_2:$ Dado $f \in Aut\mathbb{Z}$, temos que $f(n) = nf(1)$, 
+$\forall n \in \mathbb{Z}$. Se fosse $f(1) \neq -1$, teríamos $f(\mathbb{Z}) \neq \mathbb{Z}$
+um absurdo. Então, deve ser $f(1) = 1$ ou $f(1) = -1$. Se $f(1) = 1$, temos $f(n) = n = id(n)$
+donde $f = id$. Se $f(1) = -1$, temos $f(n) = -n = -id(n)$ donde $f = -id$. Logo, $Aut\mathbb{Z} = \{id, -id\}$. É fácil verificar que a função $\varphi : \mathbb{Z}_2 \longrightarrow Aut\mathbb{Z}$,
+onde $\varphi (\bar{0}) = id$ e $\varphi (\bar{1}) = -id$, é um isomorfismo.
+\\
+
+\noindent $Aut\mathbb{Z}_6 \simeq \mathbb{Z}_2:$ Dado $f \in Aut\mathbb{Z}_6$, temos que $f(\bar{n}) = \bar{n}f(\bar{1})$. Temos que $f(\bar{1}) = \bar{0} \Longrightarrow f(\mathbb{Z}_6) = \{0\}$, 
+$f(\bar{1}) = \bar{2} \Longrightarrow f(\mathbb{Z}_6) = \{0, 2, 4\}$, $f(\bar{1}) = \bar{3} \Longrightarrow f(\mathbb{Z}_6) = \{0, 3\}$, $f(\bar{1}) = \bar{4} \Longrightarrow f(\mathbb{Z}_6) = \{0, 2, 4\}$ e por último, $f(\bar{1}) = \bar{5} = \bar{-1} \Longrightarrow f(\mathbb{Z}_6) = \mathbb{Z}_6$.
+Portanto, devemos ter $f(\bar{1}) = \bar{1}$ ou $f(\bar{1}) = \bar{-1}$ (que são os únicos casos no qual se tem $f(\mathbb{Z}_6) = \mathbb{Z}_6$). Por um argumento análogo ao da letra a), conclui-se que $Aut\mathbb{Z}_6 = \{id, -id\}$ e $Aut\mathbb{Z}_6 \simeq \mathbb{Z}_2$.
+
+\end{5}
+
+\end{document}

@@ -1,0 +1,142 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm]{geometry}
+\usepackage[brazil]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{tikz}
+\usepackage{authblk}
+
+\title{\textbf {TEOREMA DE HALL}}
+\author[1]{Daniel Alves de Lima}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{flushleft}
+
+Um grafo bipartido $G := G[X,Y]$ possui um emparelhamento que cobre todo vértice de $X$ se, e somente se $|N(S)| \geq |S|, \forall S \subseteq X$.
+
+\end{flushleft}
+
+\begin{proof}
+
+Seja $G := G[X,Y]$ um grafo bipartido com um emparelhamento $M$ que cobre todo vértice de de $X$. Dado $S \subseteq X$, temos que cada $x \in S$ está ligado a um único vértice $y \in N(S)$ por uma aresta do emparelhamento (veja Figura 1). Tomando $f(x) = y$ com $xy \in M$, obtemos uma função injetora $f : S \to N(S)$. Logo, $|N(S)| \geq |S|$. 
+
+Reciprocamente, seja $G := G[X,Y]$ um grafo bipartido em que não há emparelhamento cobrindo todo vértice de $X$. Sejam $M^*$ um emparelhamento máximo e $u \in X$ um vértice não coberto por $M^*$. Considere $T$ o conjunto de vértices que são conectados a $u$ através de caminhos alternados de $M^*$. Tome $U := T \cap X$ e $W := T \cap Y$. Nenhum desses caminhos alternados são de aumento o que torna $u$ o único vértice que não é coberto em $U$ (veja Figura 2). Como os vértices de $U \setminus \{u\}$ estão emparelhados com os vértices de $W$ obtemos $|U \setminus \{u\}| = |W| = |U| - 1$. Note que os vértices que estão em $W$ são conectados a vértices que estão em $U$ por definição, portanto $W \subseteq N(U)$. Se existir algum vértice $v \in N(U)$ fora de $W$ temos que $v$ não é coberto por $M^*$; pois  se fosse, ou teríamos duas arestas adjacentes de $M^*$, ou $u$ seria coberto por $M^*$. Em qualquer caso em que $v$ for adjacente a $u$ ou a qualquer outro vértice de $U$ (onde $v$ é adjacente a um vértice que é coberto por $M^*$ e conectado a $u$ por um caminho alternado, veja Figura 3) obtemos um caminho de aumento com $u$ e $v$ como seus vértices finais, um absurdo. Portanto todo vértice $v \in N(U)$ deve estar em $W$, ou seja, $N(U) = W$. Logo, $|N(U)| = |U| - 1 < |U|$ com $U \subseteq X$ contradizendo a hipótese inicial.
+
+\end{proof}
+
+\begin{center}
+
+\begin{tikzpicture}[scale = 2]
+
+\draw [black] (-1,0) -- (0.5,1);
+\draw [black] (2,0) -- (3.5,1);
+\draw [black] (-1,0) -- (-1.5,1);
+\draw [red, ultra thick] (0,0) -- (-0.5,1);
+\draw [black] (0,0) -- (0.5,1);
+\draw [black] (0,0) -- (1.5,1);
+\draw [black] (1,0) -- (-0.5,1);
+\draw [black] (1,0) -- (0.5,1);
+\draw [black] (1,0) -- (-1.5,1);
+\draw [red, ultra thick] (1,0) -- (2.5,1);
+\draw [black] (2,0) -- (0.5,1);
+\draw [red, ultra thick] (2,0) -- (1.5,1);
+\draw [black] (2,0) -- (2.5,1);
+\draw [black] (3,0) -- (2.5,1);
+\draw [black] (3,0) -- (0.5,1);
+
+\filldraw [black] (-1,0) circle (1pt);
+\filldraw [black] (-1.5,1) circle (1pt);
+\filldraw [black] (0,0) circle (1pt);
+\filldraw [black] (1,0) circle (1pt);
+\filldraw [black] (2,0) circle (1pt);
+\filldraw [black] (-0.5,1) circle (1pt);
+\filldraw [black] (0.5,1) circle (1pt);
+\filldraw [black] (1.5,1) circle (1pt);
+\filldraw [black] (2.5,1) circle (1pt);
+\filldraw [black] (3,0) circle (1pt);
+\filldraw [black] (3.5,1) circle (1pt);
+
+\draw [rounded corners] (-1.6,0.9) rectangle node[above=5pt]{$N(S)$} (3.6,1.1);
+\draw [rounded corners] (-0.1,-0.1) rectangle node[below=5pt]{$S$} (2.1,0.1);
+
+\end{tikzpicture}
+
+\end{center}
+
+\begin{center}
+
+\textbf {Fig. 1.} Um exemplo da injetividade de $f : S \to N(S)$ em um grafo bipartido. As arestas que fazem parte do emparelhamento $M^*$ estão em vermelho.
+
+\end{center}
+
+\begin{center}
+
+\begin{tikzpicture}[scale = 2]
+
+\draw [black, thick] (0,0) -- (0.5,1);
+\draw [red, ultra thick] (0.5,1) -- (1,0);
+\draw [black, thick] (1,0) -- (1.5,1);
+\draw [red, ultra thick] (1.5,1) -- (2,0);
+\draw [black, thick] (2,0) -- (2.5,1);
+\draw [red, ultra thick] (2.5,1) -- (3,0);
+\draw [black, thick] (3,0) -- (3.5,1);
+\draw [red, ultra thick] (3.5,1) -- (4,0);
+
+\filldraw [black] (0,0) node[below left]{$u$} circle (1pt);
+\filldraw [black] (0.5,1) circle (1pt);
+\filldraw [black] (1.0,0) circle (1pt);
+\filldraw [black] (1.5,1) circle (1pt);
+\filldraw [black] (2,0) circle (1pt);
+\filldraw [black] (2.5,1) circle (1pt);
+\filldraw [black] (3,0) circle (1pt);
+\filldraw [black] (3.5,1) circle (1pt);
+\filldraw [black] (4,0) circle (1pt);
+
+\draw [rounded corners] (0.4,0.9) rectangle node[above=5pt]{$W$} (3.6,1.1);
+\draw [rounded corners] (-0.1,-0.1) rectangle node[below=5pt]{$U$} (4.1,0.1);
+
+\end{tikzpicture}
+
+\begin{center}
+
+\textbf {Fig. 2.} Exemplo de um caminho alternado com vértices de T.
+
+\end{center}
+
+\end{center}
+
+\begin{center}
+
+\begin{tikzpicture}[scale = 2]
+
+\draw [black, thick] (-0.5,1) -- (2,0);
+\draw [black, thick] (0,0) -- (0.5,1);
+\draw [red, ultra thick] (0.5,1) -- (1,0);
+\draw [black, thick] (1,0) -- (1.5,1);
+\draw [red, ultra thick] (1.5,1) -- (2,0);
+
+\filldraw [black] (-0.5,1) node[above left]{$v$} circle (1pt);
+\filldraw [black] (0,0) node[below left]{$u$} circle (1pt);
+\filldraw [black] (0.5,1) circle (1pt);
+\filldraw [black] (1.0,0) circle (1pt);
+\filldraw [black] (1.5,1) circle (1pt);
+\filldraw [black] (2,0) circle (1pt);
+
+\draw [rounded corners] (0.4,0.9) rectangle node[above=5pt]{$W' \subseteq W$} (1.6,1.1);
+\draw [rounded corners] (0.9,-0.1) rectangle node[below=5pt]{$U' \subseteq N(U \setminus \{u\})$} (2.1,0.1);
+
+\end{tikzpicture}
+
+\begin{center}
+
+\textbf {Fig. 3.} Caminho de aumento de $v$ até $u$, onde $W'$ e $U'$ são subconjuntos de vértices que são cobertos por $M^*$.
+
+\end{center}
+
+\end{center}
+
+\end{document}

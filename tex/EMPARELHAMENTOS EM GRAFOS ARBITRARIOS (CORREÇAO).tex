@@ -1,0 +1,226 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[top=2cm]{geometry}
+\usepackage[brazil]{babel} 
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{tikz}
+\usepackage{authblk}
+
+\newtheorem*{1}{Lema 1}
+\newtheorem*{2}{Lema 2}
+\newtheorem*{3}{Lema 3}
+\newtheorem*{4}{Lema 4}
+\newtheorem*{5}{Teorema de Tutte-Berge}
+\newtheorem*{6}{Corolário}
+\newtheorem*{7}{Teorema de Tutte}
+
+\newtheorem*{8}{Exercício 16.3.1}
+\newtheorem*{9}{Exercício 16.3.2}
+\newtheorem*{10}{Exercício 16.3.3}
+\newtheorem*{11}{Exercício 16.3.5}
+\newtheorem*{12}{Exercício 16.3.6}
+\newtheorem*{13}{Exercício 16.3.7}
+\newtheorem*{14}{Exercício 16.4.1}
+
+\begin{document}
+
+\begin{1}
+
+O conjunto vazio é uma barreira de todo grafo hypomatchable.
+
+\begin{proof}
+
+Como $G-v$ é emparelhado qualquer que seja $v \in V$, $G$ possui apenas uma componente impar. Portanto, qualquer emparelhamento máximo de $G$ não cobre exatamente um vértice. Então tomando $S := \emptyset$, segue $|U| = o(G) = 1$. Logo, $\emptyset$ é uma barreira de $G$.
+
+\end{proof}
+
+\end{1}
+
+\begin{2}
+
+Seja $v$ um vértice essencial de um grafo $G$ e seja $B$ uma barreira de $G-v$. Então $B \cup {v}$ é uma barreira de $G$.
+
+\begin{proof}
+
+Primeiro note que $(G-v)-B = G - (B\cup\{v\})$. Como $B$ é barreira de $G-v$, temos $|U| = o(G-(B \cup \{v\}))-|B|$ com $U$ o conjunto de vértices não cobertos por algum emparelhamento máximo de $G-v$. Seja $U'$ um conjunto de vértices não cobertos por algum emparelhamento máximo de $G$. Então, $|U'| = |V(G)| - 2\alpha'(G)$; como $v$ é essencial, $\alpha'(G) = \alpha'(G-v) + 1$. Segue que $|U'| = |V(G)| - 2\alpha'(G-v) - 2$; usando $|V(G-v)| = |V(G)| - 1$, obtemos $|U'| = |V(G-v)| - 2\alpha'(G-v) - 1$. Como $|U| = |V(G-v)| - 2\alpha'(G-v)$, segue o resultado $|U'| = |U| - 1$. Finalmente, sabendo que $|B \cup \{v\}| = |B| + 1$, podemos concluir $|U'| = o(G - (B \cup \{v\})) - |B \cup \{v\}|$. Logo, $B \cup \{v\}$ é uma barreira de $G$.
+
+\end{proof}
+
+\end{2}
+
+\begin{3}
+
+Seja $G$ um grafo conexo sem vértices essenciais. Dada a tripla $(M, x, y)$ tal que $M$ é um emparelhamento máximo, $x$ e $y$ são vértices de $G$, temos que pelo menos um destes vértices é coberto por M.
+
+\begin{proof}
+
+Como $G$ é conexo, a distância entre quaisquer dois vértices é finita. Vamos mostrar por indução em $d(x,y)$. Se $(M,x,y)$ é tal que $d(x, y) = 1$, temos que $x$ e $y$ são adjacentes com ambos não podendo serem descobertos por $M$. Vamos estabelecer a hipótese de indução da seguinte forma: Dada qualquer tripla $(N, u, v)$ tal que $d(u, v) \leq n$ com $n\geq1$, temos que $u$ ou $v$ é coberto por $N$. Seja uma tripla $(M, x, y)$ com $d(x, y) = n + 1$. Suponha por absurdo que $x$ e $y$ são descobertos por $M$. Seja $xPy$ um caminho de $x$ a $y$ de menor tamanho em $G$. Como $d(x,y)=n+1\geq2$, então existe um vértice interno $v$ de $P$. Como $xPv$ é de menor que $P$, pela hipótese da indução temos que $v$ é coberto por $M$. Como não há vértices essenciais, em particular $v$ não é essencial e, portanto,  $G$ possui emparelhamento $M'$ que não cobre $v$. Segue que $M'$ cobre ambos $x$ e $y$, pois $xPv$ e $vPy$ são de tamanho menores que $P$. Considerando $G[M \bigtriangleup M']$, note que suas componentes acíclicas são caminhos de tamanho par, caso contrario haveria um caminho de aumento para $M$ ou $M'$. Cada vértice $x$, $v$, $y$ é coberto por exatamente por um dos emparelhamentos e assim cada um é vértice final de um de tais caminhos. Como os caminhos são pares, $x$ e $y$ não são vértices finais do mesmo caminho. Além disso, os caminhos que começam em $x$ e $y$ não podem terminar ambos em $v$. Portanto, se um caminho começa em $x$ e termina em $v$, então $y$ é vértice terminal de um caminho que não termina em $v$; raciocínio análogo para caminho que começa em $y$ e termina em $v$. Podemos portanto supor, sem perda de generalidade, que um caminho $Q$ de $G[M \bigtriangleup M']$ que começa em $x$ não termine em $v$. Observe que $M' \bigtriangleup E(Q)$ é um emparelhamento máximo que não cobre $x$ nem $v$. Assim, teríamos uma tripla $(M' \bigtriangleup E(Q), x, v)$ tal que $d(x,v)\leq n$ mas com $M'\triangle E(Q)$ deixando $x$ e $v$ descobertos, que é uma contradição com a hipótese de indução. Logo, pelo menos um dos vértices $x$ ou $y$ deve ser coberto por $M$.
+
+
+\end{proof}
+
+\end{3}
+
+\begin{4}
+
+Um grafo $G$ conexo não tem vértices essenciais se, e somente se, $G$ é hypomatchable.
+
+\begin{proof}
+
+Seja $G$ um grafo conexo sem vértices essenciais. Considere $x$ um vértice qualquer de G. Como $x$ não é essencial, existe um emparelhamento $M$ que não cobre $x$. Fixe um vértice $y$ diferente de $x$ e forme a tripla $(M,x,y)$. Pelo Lema 3, $M$ deve cobrir $y$, já que não cobre $x$. Como $y$ foi tomado arbitrariamente, segue que $M$ cobre todo vértice de $V(G) - x$, ou seja, $M$ é um emparelhamento perfeito de $G - x$. Finalmente, como $x$ foi tomado arbitrariamente no início, então dado um vértice $x$ existe um emparelhamento perfeito em $G - x$. Logo, $G$ é hypomatchable.
+
+Reciprocamente, dado $v \in V$, $G-v$ possui um emparelhamento perfeito $M$ que é um emparelhamento máximo de $G$ que não cobre $v$. Então $v$ não é essencial. Como $v$ foi tomado arbitrariamente, concluímos que $G$ não possui vértices essenciais. 
+
+\end{proof}
+
+\end{4}
+
+\begin{5}
+
+Todo grafo tem uma barreira.
+
+\begin{proof}
+
+Vamos provar por indução na ordem de $G$. O caso $|V(G)|=1$ é trivialmente verdadeiro, pois $\emptyset$ é uma barreira pra $G$. Suponha que todo grafo $G$ de ordem $n$ possui barreira $B$. Agora adicionando um vértice $u$ em um grafo arbitrário $G$ de ordem $n$, de modo que a adjacência de $u$ com outros vértices de $G$ seja arbitraria, obtendo $F := G + u$ (note que $F$ é um grafo arbitrário de ordem $n+1$). Se existe vértice essencial $v$ em $F$, então pela hipótese de indução $F - v$ é um grafo de ordem $n$ que possui barreira $B$. Então pelo lema 2, $B \cup \{v\}$ é uma barreira de $F$. Se todo vértice de $F$ não é essencial, então $F$ possui $\emptyset$ como barreira (exercício 16.3.6). Em qualquer caso temos que $F$ é um grafo arbitrário de ordem $n + 1$ que possui uma barreira. Logo, todo grafo possui uma barreira.
+
+\end{proof}
+
+\end{5}
+
+\begin{6}
+
+Para qualquer grafo $G$: \center $\alpha'(G) = \frac{1}{2} min\{ |V(G)| - (o(G - S) - |S|);\, S \subset V(G)\}$
+
+\begin{proof}
+
+Seja $U$ o conjunto de vértices não cobertos por algum emparelhamento máximo. Temos que $|U| \geq o(G - S) - |S|,\, \forall S \subset V(G)$. Como $|U| = |V(G)| -2\alpha'(G)$, segue que $\alpha'(G) \leq \frac{1}{2} [|V(G)| - (o(G - S) - |S|)],\, \forall S \subset V(G)$. Pelo teorema anterior, $G$ tem uma barreira, digamos $B$, e ao tomar $S := B$ obtemos a igualdade $\alpha'(G) = \frac{1}{2} [|V(G)| - (o(G - B) - |B|)]$. Ou seja, $S := B$ é o caso em que $|V(G)| - (o(G - S) - |S|)$ é o menor valor possível. Logo, $\alpha'(G) = \frac{1}{2} min\{ |V(G)| - (o(G - S) - |S|);\, S \subset V(G)\}$.
+
+\end{proof}
+
+\end{6}
+
+\begin{7}
+
+Um grafo $G$ possui emparelhamento perfeito se, e somente se \center $o(G-S) \leq |S|,\, \forall S \subseteq V(G)$
+
+\begin{proof}
+
+$(\Longrightarrow)$: Óbvio.
+
+$(\Longleftarrow$): Suponha que $G$ não possui emparelhamento perfeito. Seja $U$ o conjunto de vértices não cobertos por algum emparelhamento máximo de $G$, temos $|U| > 0$. Pelo teorema de Tutte-Berge, $G$ tem uma barreira $B$. Então, $|U| = o(G-B) - |B| > 0$ que implica $o(G-B) > |B|$, um absurdo. Logo, G possui emparelhamento perfeito.
+
+\end{proof}
+
+\end{7}
+
+\noindent \textbf{Alguns observações/curiosidades:}
+
+\begin{itemize}
+
+\item Um emparelhamento máximo de grafo hypomatchable deixa exatamente um vértice exposto.
+
+\item Exatamente um emparelhamento máximo não cobre cada vértice de um grafo hypomatchable.
+
+\item Se $G$ é conexo com um único vértice não coberto por um emparelhamento $M$. Então $M$ é máximo e a ordem $G$ é impar.
+
+Claramente $M$ não pode possuir um caminho de aumento, portanto é máximo. Além do mais, $|V(G)| = 2\alpha'(G) + 1$.
+
+\item Todos os vértices de um grafo são essenciais se, e somente se o grafo admite emparelhamento perfeito.
+
+Seja $G$ um grafo. Suponha que $G$ não admite emparelhamento perfeito. Seja $M$ um emparelhamento máximo, então existe $u \in V$ tal que $M$ não cobre $u$. Ou seja, $u$ não é essencial; um absurdo. Reciprocamente, como todo emparelhamento máximo cobre todos os vértices, então todos os vértices são essenciais.
+
+\end{itemize}
+
+\noindent \textbf{Alguns exercícios resolvidos do livro:}
+
+\begin{8}
+
+Seja $M$ um emparelhamento em um grafo $G$, e seja $B$ um conjunto de vértices de $G$ tal que $|U| = o(G - B) - |B|$, onde $U$ é o conjunto de vértices de $G$ não cobertos por $M$. Mostre que $M$ é um emparelhamento máximo de $G$.
+
+\begin{proof}
+
+Seja $M'$ outro emparelhamento com $U'$ o conjunto de vértices expostos. Temos que $|U'| \geq o(G - S) - |S|,\, \forall S \subset V(G)$. Tomando $S := B$, concluímos que $|U'| \geq |U|$. Portanto, $U$ é um caso com menor numero de vértices expostos, ou seja, $M$ cobre o maior numero de vértices possível. Logo, $M$ é máximo.
+
+\end{proof}
+
+\end{8}
+
+\begin{9}
+
+Seja $G$ um grafo e $S$ um subconjunto próprio de $V$. Mostre que $O(G-S) - |S| \equiv |V(G)|\,(mod\,2)$
+
+\begin{proof}
+
+Sejam $P$ e $I$ os conjuntos das componentes de ordem par e impar de $G-S$, respectivamente. O numero de vértices de $G-S$ é a soma de vértices das componentes de $P$ e $I$. Portanto, $|V(G)| - |S| = \sum_{H \in P} |V(H)| + \sum_{J \in I} |V(J)|$; onde $|V(H)| \equiv 0\,(mod\,2),\, \forall H \in P$, e $|V(J)| \equiv 1\,(mod\,2),\, \forall J \in I$. Realizando o somatório nas congruências obtemos, $\sum_{H \in P} |V(H)| \equiv 0\,(mod\,2)$ e $\sum_{J \in I} |V(J)| \equiv o(G-S)\,(mod\,2)$; segue que $|V(G)| - |S| \equiv o(G-S)\,(mod\,2)$. Subtraindo $|S|$ em ambos os lados obtemos o resultado desejado $|V(G)| \equiv |V(G)| - 2|S| \equiv o(G-S) - |S|\,(mod\,2)$.
+
+\end{proof}
+
+
+\end{9}
+
+\begin{10}
+
+Mostre que a união das barreiras dos componentes de um grafo é uma barreira do grafo.
+
+\begin{proof}
+
+Seja $M$ um emparelhamento máximo. Para cada componente $H_i$ de G temos $|U_i| = o(H_i - B_i) - |B_i|,\, 1 \leq i \leq c(G)$ onde $U_i$ é um conjunto de vértices não cobertos por M na componente $i$ e $B_i$ sua respectiva barreira. Claramente $(U_i)$ e $(B_i)$, $1 \leq i \leq c(G)$ são famílias de conjuntos disjuntos. Portanto, $|U| = \sum_{i=1}^{c(G)} o(G_i - B_i) - |B|$ com $B := \cup_{i=1}^{c(G)} B_i$. A soma do numero de componentes de ordem impar gerado ao remover cada $B_i$ é o mesmo na remoção de $B$, ou seja, $\sum_{i=1}^{c(G)} o(H_i - B_i) = o(G-B)$. Segue que $|U| = o(G-B) - |B|$. Logo, $B$ é uma barreira de G. 
+ 
+\end{proof}
+
+\end{10}
+
+\begin{11}
+
+Provar o lema 2.
+
+\begin{proof}
+
+Já feito.
+
+\end{proof}
+
+\end{11}
+
+\begin{12}
+
+Deduzir a partir do lema 4 que o conjunto vazio é uma barreira de todo grafo sem vértices essenciais.
+
+\begin{proof}
+
+Seja $G$ um grafo sem vértices essenciais. Claramente cada componente de $G$ é hypomatchable e possui conjunto vazio como barreira. Por 16.3.3, uma barreira de G é o conjunto vazio, pois a união de conjuntos vazios é o conjunto vazio.
+
+\end{proof}
+
+\end{12}
+
+\begin{13}
+
+a) Provar o Teorema de Tutte-Berge por indução no numero de vértices.
+
+\noindent b)Deduzir o corolário logo após o Teorema de Tutte-Berge.
+
+\begin{proof}
+
+Já feito.
+
+\end{proof}
+
+\end{13}
+
+\begin{14}
+
+Mostre que uma arvore $G$ tem um emparelhamento perfeito se, e somente se $o(G-v) = 1,\, \forall v \in V(G)$.
+
+\begin{proof}
+
+Dado $v \in V$; como $G$ é par, $G-v$ é impar e possui pelo menos uma componente de ordem impar, $1 \leq o(G-v)$. Tome $S := \{v\}$, então $o(G-v) \leq 1$ pelo Teorema de Tutte. Logo, $o(G-v) = 1$.
+
+Reciprocamente, seja $G$ uma arvore tal que $o(G-v),\, \forall v \in V(G)$. Primeiro note que $\sum_{v \in S} o(G-v) = |S|$ para qualquer $S \subseteq V(G)$. Queremos provar por indução no numero de vértices de um conjunto de vértices qualquer $S \subseteq V(G)$, que $\sum_{v \in S} o(G-v) \geq o(G-S)$, para concluir que $G$ tem emparelhamento perfeito pelo teorema de Tutte. Se $S$ possui apenas um vértice, claramente a desigualdade anterior é satisfeita. Vamos estabelecer a seguinte hipótese de indução: Para todo $S \subseteq V(G)$ com $|S| = n$, temos que $\sum_{v \in S} o(G-v) \geq o(G-S)$. Dado $S \subseteq V(G)$ com $|S| = n$ e $u \in V(G) \backslash S$, tome $S' := S \cup \{u\}$. Temos que $\sum_{v \in S} o(G-v) \geq o(G-S)$, somando $o(G-u) = 1$ a ambos os lados, segue que $\sum_{v \in S'} o(G-v) \geq o(G-S) + 1$. Note que $u$ pertence a  alguma componente, digamos $H$, de $G-S$. Como $H$ é uma arvore, $o(H-u) = 1$. Vamos analisar a seguinte situação; seja $F$ uma componente de um grafo $G'$, se $F$ for de ordem impar a remoção de algum vértice $x$ de $F$ gera um numero par de componentes de ordem impar, satisfazendo $o(G'-x) = o(G') + o(F-x) - 1$. Se $F$ for de ordem par a remoção gera um numero impar de componentes de ordem impar satisfazendo $o(G'-x) = o(G') + o(F-x)$. Fazendo $G' := G-S$, $F := H$ e $x := u$; se $H$ for impar, então $o(G-S') = o(G-S)$.
+Segue que $\sum_{v \in S'} o(G-v) \geq o(G-S') + 1$. Se $H$ for par, então $o(G-S') = o(G-S) + 1$; segue $\sum_{v \in S'} o(G-v) \geq o(G-S')$. Em qualquer caso a hipótese é valida para $|S'| = n + 1$. Então, $\sum_{v \in S} o(G-v) \geq o(G-S)$ para todo $S \subseteq V(G)$. Como $\sum_{v \in S} o(G-v) = |S|$, temos que $|S| \geq o(G-S),\, \forall S \subseteq V(G)$. Logo, $G$ possui um emparelhamento perfeito.
+
+\end{proof}
+
+\end{14}
+
+\end{document}
