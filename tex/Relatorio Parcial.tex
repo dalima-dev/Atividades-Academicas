@@ -1,0 +1,393 @@
+\documentclass[a4paper, 12pt]{article}
+
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{multicol,lipsum}
+\usepackage{amssymb}
+\renewcommand{\Bbb}{\mathbb}
+\usepackage{amsthm}
+\usepackage{systeme,mathtools}
+
+\newtheorem*{1}{Teorema}
+\newtheorem*{2}{Lema}
+\newtheorem*{3}{Teorema}
+\newtheorem*{4}{Teorema}
+\newtheorem*{5}{Teorema}
+\newtheorem*{6}{Teorema}
+\newtheorem*{7}{Proposição}
+\newtheorem*{8}{Lema}
+\newtheorem*{9}{Proposição}
+\newtheorem*{10}{Teorema}
+\newtheorem*{11}{Teorema}
+\newtheorem*{12}{Corolário}
+
+\begin{document}
+%\maketitle
+
+% % % % % % % % %FOLHA DE ROSTO % % % % % % % % % %
+
+\begin{titlepage}
+	\begin{center}
+	
+	%\begin{figure}[!ht]
+	%\centering
+	%\includegraphics[width=2cm]{c:/ufba.jpg}
+	%\end{figure}
+
+		\Huge{UNIVERSIDADE FEDERAL DE PERNAMBUCO}\\
+		\large{DMAT}\\ 
+		\large{INICIAÇÃO CIENTÍFICA}\\ 
+\vspace{15pt}
+        
+        \vspace{85pt}
+        
+		\textbf{\LARGE{EQUAÇÕES DIFERENCIAIS ORDINÁRIAS E CONTROLE}}
+		\title{\large{Título}}
+	%	\large{Modelo\\
+     %   		Validação do modelo clássico}
+			
+	\end{center}
+\vspace{1,5cm}
+	
+	\begin{flushright}
+
+   \begin{list}{}{
+      \setlength{\leftmargin}{4.5cm}
+      \setlength{\rightmargin}{0cm}
+      \setlength{\labelwidth}{0pt}
+      \setlength{\labelsep}{\leftmargin}}
+
+      \item Primeiro relatório de projeto de pesquisa apresentado ao Programa de Iniciação Científica do Curso de Bacharelado em Matemática da Universidade Federal de Pernambuco.
+
+      \begin{list}{}{
+      \setlength{\leftmargin}{0cm}
+      \setlength{\rightmargin}{0cm}
+      \setlength{\labelwidth}{0pt}
+      \setlength{\labelsep}{\leftmargin}}
+
+			\item Aluno: Daniel Alves de Lima\
+            \item Professor orientador: Roberto de Almeida Capistrano Filho\
+
+      \end{list}
+   \end{list}
+\end{flushright}
+\vspace{1cm}
+\begin{center}
+		\vspace{\fill}
+		 Janeiro\\
+		 2022
+			\end{center}
+\end{titlepage}
+\newpage
+% % % % % % % % % % % % % % % % % % % % % % % % % %
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+
+\newpage
+\pagenumbering{arabic}
+% % % % % % % % % % % % % % % % % % % % % % % % % % %
+\section{Resumo}
+
+Os tópicos inicialmente estudados pelo aluno Daniel Alves foram uma introdução em Equações Diferenciais Ordinárias para que este pudesse obter conhecimento necessário para compreender os conceitos e aplicações no estudo de Controle. Este estudo tem por objetivo analisar o problema de determinar como e quando um estado específico pode ser atingindo por um sistema a partir da escolha de uma estratégia de controle.
+
+\section{Apresentação}
+Neste relatório será abordado os principais tópicos estudados em Equações Diferenciais Ordinárias para o estudo de Controle. O tema principal é Equações Lineares Não Autônomas, cujo objetivo é compreender melhor a obtenção de soluções de equações do tipo $x' = A(t)x + b(t)$, que será estudado em controle. Veremos que as soluções dessas equações são únicas para cada condição inicial através do estudo em Espaços Métricos. Abordaremos Matriz fundamental e Resolvente, necessário para obtenção de soluções, na forma explicita, dessas equações lineares. Finalmente, faremos um estudo em Exponencial de Matrizes, onde definiremos este conceito e estabelecer propriedades que são necessárias para a resolução de problemas em Controle utilizando o Critério da Integral quando a matriz $A(t)$, numa equação linear $x' = A(t)x + Bu$, não depende do tempo.
+
+Por fim, definiremos Controlabilidade e veremos alguns exemplos.
+
+\section{Descrição de atividades}
+As atividades são através de seminários semanais onde o aluno faz uma exposição do que foi estudado durante a semana de acordo com a ementa  e orientações dadas pelo professor.
+O estudo é realizado através de livros-texto e apostilas recomendadas pelo orientador de modo que um complemente o outro para que o entendimento dos assuntos seja o melhor possível. 
+
+\section{Análise dos Resultados}
+\subsection{Equações Lineares Não Autônomas}
+Considere a equação diferencial ordinária linear $$x' = A(t)x + b(t)$$ em $\Bbb R^n$, onde $A:I\to M_{n\times n}(\Bbb R)$ e $b:I\to \Bbb R^n$ são funções contínuas definidas num intervalo $I \subset \Bbb R$. 
+
+\begin{itemize}
+\item Uma solução de $x' = A(t)x + b(t)$ é uma função derivável $x:I\to \Bbb R^n$ que satisfaz a equação para cada $t \in I$.
+\item Qualquer solução $x$ é de classe $C^1$ no $\Bbb R^n$.
+\item Uma condição inicial da equação se representa fixando $(t_0,x_0) \in I\times \Bbb R^n$ de modo que $x(t_0) = x_0$.
+\end{itemize}
+
+Sejam um espaço métrico $M$ e uma aplicação $\omega:M\to M$. Definimos as iteradas de um ponto $x\in M$ indutivamente por $x_0=x$ e $x_{n+1}=\omega(x_n)$ para $n\in \Bbb N$. Iteradas também são denominadas aproximações sucessivas. Note que $x_n = \omega^n(x),\ \forall x \in \Bbb N$.
+
+Um ponto $a \in M$ é um ponto atrator de $\omega$ se $\lim\omega(x_n) = a$ para as aproximações sucessivas de qualquer ponto $x\in M$.
+
+Sejam $M$ um espaço métrico e uma aplicação  $\omega:M\to M$. Um ponto $a\in M$ é um ponto fixo de $\omega$ se $\omega(a) = a$.
+
+Uma aplicação $\omega:M\to M$ (de um espaço métrico $(M,d)$) é uma contração se $\omega$ é lipschitziana de constante $\lambda < 1$,isto é, existe $\lambda > 0$ tal que $d(\omega(x),\omega(y)) \leq \lambda d(x,y),\ \forall x,y\in M$ com $\lambda < 1$. Dizemos que neste caso $\lambda$ é um fator de contração de $\omega$.
+
+Considere o seguinte resultado.
+\begin{1}
+Sejam um espaço métrico $(M,d)$ e uma aplicação $\phi:M\to M$ tal que exista uma iterada de $\phi$ que é uma contração (isto é, $\phi^k$ é uma contração para algum inteiro $k \geq 1$). Então existe um único ponto fixo atrator de $\phi$, ou seja, um único ponto $a\in M$ tal que $\lim\phi^n(x) = a$ para todo $x\in M$.
+\end{1}
+A demonstração deste teorema é muito extensa e segue do teorema do ponto fixo de contrações. Mas, está fora do escopo de estudo.
+
+Considere o problema de valor inicial 
+\begin{center}$\begin{cases}
+x'=f(t,x),\\ x(t_0)=x_0
+\end{cases}$\end{center}
+onde $f:U\to \Bbb R^n$ é uma aplicação contínua no aberto $U \subset \Bbb R \times \Bbb R^n$.
+
+Uma aplicação $f:U\to \Bbb R^n$ é lipschitziana na variavel espacial em $U \subset \Bbb R^{n+1}$, se existe $k > 0$ tal que $|f(t,x)-f(t,y)| \leq k|x-y|$ para todo $(t,x),(t,y)\in U$ de mesma primeira coordenada $t$.
+
+Suponhamos que $U\subset \Bbb R^{n+1}$ contém $I\times \Bbb R^n$, para algum intervalo $I\subset \Bbb R$. Sejam $f:U\to \Bbb R^n$ uma aplicação contínua e um ponto $(t_0,x_0) \in I\times \Bbb R^n$ qualquer. Então, um caminho derivável $x:I\to \Bbb R^n$ é uma solução do problema de valor inicial se, e somente se, $x(t) = x_0 + \int^t_{t_0} f(s,x(s))ds,\ \forall t\in I$.
+Isto, motiva a definição de uma função $\mathcal L: \mathcal F\to \mathcal F$, onde $\mathcal F = C(I,\Bbb R^n)$ (conjunto das funções contínuas de $I$ para $\Bbb R$) tal que $$\mathcal L = x_0 + \int^t_{t_0} f(s,x(s))ds,\ \forall t \in I$$.
+
+Se $I$ é um intervalo compacto, então $(\mathcal F, d)$ é um espaço métrico completo com métrica $$d(\mu,\upsilon) = \sup_{t\in I} |\mu(t) - \upsilon(t)|$$.
+
+\begin{2}
+Se $k>0$ é uma constante de lipschitz de $f$ em $I\times \Bbb R^n$, então $|\mathcal F^m(\mu)(t) - \mathcal F^m(\upsilon)(t)| \leq \frac{k^m}{m!}|t-t_0|^m d(\mu,\upsilon)$ para quaisquer $\mu,\upsilon \in \mathcal F,\ m \geq 0$ e $t\in I$.
+\end{2}
+\begin{proof}
+Evidente para $m=0$ pela definição de $d(\mu,\upsilon)$. Dadas funções $\mu,\upsilon \in \mathcal F$, temos que 
+$$\mathcal L(\mu)(t) - \mathcal L(\upsilon)(t) = x_0 + \int^t_{t_0} f(s,\mu(s))ds - (x_0 + \int^t_{t_0} f(s,\upsilon(s))ds) =$$\\
+$$\int^t_{t_0} (f(s,\mu(s))- f(s,\upsilon(s)))ds$$
+Então, para cada $t \in I$, 
+$$|\mathcal L(\mu)(t) - \mathcal L(\upsilon)(t)| \leq |\int^t_{t_0}|f(s,\mu(s))-f(s,\upsilon(s))|ds| \leq k|\int^t_{t_0}|\mu(s)-\upsilon(s)|ds| \leq$$\\
+$$kd(\mu,\upsilon)|\int^t_{t_0}ds| \leq kd(\mu,\upsilon)|t-t_0|$$
+onde $k > 0$ é uma constante de lipschitz de $f$.
+O lema está provado para n=1. Aplicando $\mathcal L(\mu)$ e $\mathcal L(\upsilon)$ em vez de $\mu$ e $\upsilon$ na desigualdade $|\mathcal L(\mu)(t) - \mathcal L(\upsilon)(t)| \leq k|\int^t_{t_0}|\mu(s)-\upsilon(s)|ds| \leq  kd(\mu,\upsilon)|t-t_0|$ temos que 
+$$|\mathcal L^2(\mu)(t) - \mathcal L^2(\upsilon)(t)| \leq k|\int^t_{t_0}|\mathcal L(\mu)(s)-\mathcal L(\upsilon)(s)|ds| \leq k^2d(\mu,\upsilon)|\int^t_{t_0}|s-t_0|ds| =$$
+$$k^2d(\mu,\upsilon)\frac{1}{2}|t-t_0|^2$$
+que prova o lema para n=2.
+O lema segue por indução repetindo várias vezes as mesmas etapas.
+\end{proof}
+\begin{3}
+Seja $f:U\to \Bbb R^n$ contínua no aberto $U\subset \Bbb R^{n+1}$. Se $[a,b]\times \Bbb R^n \subset U$ e $f$ é lipschitziana em $[a,b]\times \Bbb R^n$ então, para quaisquer $t_0\in[a,b]$ e $x_0\in \Bbb R^n$, existe uma única solução do problema de valor inicial
+\begin{center}
+    $
+    \begin{cases}
+    x'=f(t,x)\\ x(t_0) = x_0
+    \end{cases}
+    $
+\end{center}
+definida no intervalo $[a,b]$.
+\end{3}
+\begin{proof}
+Tome $l = b-a$. Como a série $\sum\frac{1}{m!}(kl)^m = e^{kl}$ é convergente, seu termo geral tende a zero, isto é, $\lim_{m\to 0}\frac{(kl)^m}{m!} = 0$. Portanto, podemos escolher $m$ grande tal que $\frac{k^m}{m!}|t-t_0|^m \leq \frac{(kl)^m}{m!} = \eta < 1$, onde $k > 0$ é uma constante de lipschitz de $f$. Pelo lema anterior, tem-se
+$$d(\mathcal L^m(\mu),\mathcal L^m(\upsilon)) = \sup_{t\in I}|\mathcal L^m(\mu)(t)-\mathcal L^m(\upsilon)(t)| \leq \nu d(\mu,\upsilon)$$
+onde vemos que $\mathcal L^m$ é uma contração do espaço métrico completo $\mathcal F = C(I,\Bbb R)$. Pelo teorema acima, existe um único ponto fixo $x\in \mathcal F$ de $\mathcal L$, isto é, $\mathcal L(x)=x$. Mas, isto significa que $x$ é a única solução do P.V.I. acima.
+\end{proof}
+\begin{4}
+Se $A:I\to M_{n\times n}(\Bbb R)$ e $b:I\to \Bbb R^n$ são funções contínuas no intervalo $I \subset \Bbb R$, então para quaisquer $t_0 \in I$ e $x_0 \in \Bbb R^n$, a equação $x' = A(t)x + b(t)$ possui uma única solução $x:I\to \Bbb R^n$ tal que $x(t_0) = x_0$.
+\end{4}
+\begin{proof}
+Seja $[a,b] \subset I$. A aplicação $f(t,x)=A(t)x+b(t)$ é contínua em $I\times \Bbb R^n$ e satisfaz $$|f(t,x)-f(t,y)| \leq k|x-y|$$ onde $k = \sup_{t\in [a,b]}||A(t)|| < \infty$ pois $A(t)$ é limitado pela compacidade $[a,b]$ e continuidade da função $A:I\to M_{n\times n}(\Bbb R)$. O teorema anterior garante existência e unicidade de solução em $[a,b]$. Se o intervalo $I$ é compacto, há nada para provar. Se o intervalo $I$ for qualquer, fixemos $t_0\in I$ e $x_0\in \Bbb R^n$. Tomando uma sequência crescente de intervalos fechados $[a_m,b_m]$ tais que $a_m\leq t_0\leq b_m$ e $I=\cup[a_m,b_m]$. Para cada $m\in \Bbb N$, obtém-se uma solução $x_m(t)$ em $[a_m,b_m]$ tal que $x_m(t_0)=x_0$. Pondo, em todo $t\in I$, $x(t)=x_m(t)$, a solução $x$ vale para todo intervalo $I$ por unicidade. 
+\end{proof}
+\subsubsection{Espaço de Soluções}
+Agora, veremos que o espaço vetorial $S_0$ das soluções $x'=(t)x$ é isomorfo ao $\Bbb R^n$ e que $dimS_0=n$, para podermos obter $n$ soluções $x_1,\cdots,x_n \in S_0$ linearmente independentes e definir matriz fundamental. É com esta matriz que iremos definir o resolvente de $x'=A(t)x$ e obter uma solução explicita para $x'=A(t)x+b(t)$. Mas antes, vejamos que o conjunto $S$ de todas as soluções de $x'=A(t)x+b(t)$ é um espaço vetorial afim em $C^1(I,\Bbb R^n)$ (conjunto de funções de classe $C^1$).
+
+Seja $S_0 \subset C^1(I,\Bbb R)$ o conjunto de todas soluções de $x'=A(t)x$. Note que, $x=0$ é trivialmente solução. Dados $x_1,x_2 \in S_0$ e $c_1,c_2 \in \Bbb R$, temos que $c_1x_1 + c_2x_2$ também é solução. Com efeito, para cada $t\in I$ vale $(c_1x_1 + c_2x_2)'=c_1x'_1(t) + c_2x'_2(t)=c_1A(t)x_1 + c_2A(t)x_2=A(t)(c_1x_1 + c_2x_2)(t)$. Logo, $S_0$ é subespaço vetorial de $C^1(I,\Bbb R^n)$.
+
+Vejamos que $S$ é afim. Sejam $x_p\in S$ e $x\in C^1(I,\Bbb R^n)$, vejamos que $S=x_p + S_0$. Com efeito, se $x \in S$ então para todo $t\in I$, $(x-x_p)'(t)=x'(t)-x'_p(t)=A(t)x(t)+b(t)-A(t)x_p(t)-b(t)=A(t)(x-x_p)(t)$, ou seja, $x-x_p\in S_0$. Então, $S-x_p \in S_0$. Reciprocamente, se $x-x_p\in S_0$ então $x'(t)=(x-x_p)'(t)+x'_p(t)=A(t)(x-x_p)(t)+A(t)x_p(t)+b(t)=A(t)x(t)+b(t)$ para todo $t\in I$, ou seja, $x\in S$. Então, $S_0\subset S-x_p$ Logo, $S_0=S-x_p$ ou seja $S=x_p+S_0$ para qualquer solução particular $x_p\in S$.
+
+Fica provado então que $S$ é um espaço vetorial afim. Note que, para encontrar todas as soluções de $x'=A(t)x+b(t)$, basta encontrar uma solução particular sua e qualquer solução de $x'=A(t)x$.
+\begin{5}
+O espaço vetorial $S_0$ é isomorfo a $\Bbb R^n$ e $dimS_0=n$. Precisamente, para qualquer $t_0 \in T$ fixo, $T(x)=x(t_0)$ define um isomorfismo $T:S_0\to \Bbb R^n$.
+\end{5}
+\begin{proof}
+É fácil ver que $T$ é uma transformação linear. Vejamos que $T$ é uma bijeção. A existência de soluções com $x(t_0) = x_0$, para $x_0 \in \Bbb R^n$ qualquer, garante que T é sobrejetora. Pela unicidade das soluções, temos que se $x,y\in S_0$ com $x(t_0)=y(t_0)$ então $x=y$. Portanto, $T$ é injetora. Logo, $T$ é um isomorfismo.
+\end{proof}
+Pelo teorema, as soluções $x_1,\cdots,x_n\in S_0$ são L.I. se, e somente se, para algum $t_0\in I$, os vetores $x_1(t_0),\cdots,x_n(t_0)\in \Bbb R^n$ são L.I..
+
+\subsubsection{Matriz Fundamental e Resolvente}
+Uma equação diferencial matricial é escrita na forma $X'=A(t)X$ onde $X$ é uma matriz $n\times n$.
+\begin{itemize}
+    \item Uma solução de $X'=A(t)X$ é uma função derivável $X:I\to M_{n\times n}(\Bbb R)$ que satisfaz $X'(t)=A(t)X(t)$ para cada $t \in I$. Toda solução é de classe $C^1$ em $M_{n\times n}(\Bbb R)$.
+
+    \item Fixando $(t_0,x_0) \in I\times M_{n\times n}(\Bbb R)$ com $X(t_0) = x_0$, temos uma condição inicial.
+
+    \item Uma função $X$ é solução se, e somente se, cada coluna de $X$ é solução de $x' = A(t)x$. De fato, pondo $X=(x_1,\cdots,x_n)$ em colunas $x_i=Xe_i\in \Bbb R^n$ ($\{e_i\}^{i=n}_{i=1}$ é a base canônica do $\Bbb R^n$), temos $(x'_1,\cdots,x'_n) = X' = A(t)X = A(t)(x_1,\cdots,x_n)= (A(t)x_1,\cdots,A(t)x_n)$. Assim, $X'=A(t)X$ equivale a um sistema de $n$ equações 
+    \begin{center}
+        $
+        X'=A(t)X \iff
+        \begin{cases}
+        x_1'=A(t)x_1, \\
+        x_2'=A(t)x_2, \\
+        \vdots \\
+        x_n'=A(t)x_n
+        \end{cases}
+        $
+    \end{center}
+    Portanto, existem e são únicos as soluções de $X'=A(t)X$.
+\end{itemize}
+Uma matriz fundamental da equação $x' = A(t)x$ é uma solução $X:I\to M_{n\times n}(\Bbb R)$ de $X'= A(t)X$ que possui colunas $x_1,\cdots,x_n$ linearmente independentes em $C^1(I,\Bbb R^n)$.
+\begin{6}
+Seja $X:I\to M_{n\times n}(\Bbb R)$ uma solução da equação matricial $X'=A(t)X$ com colunas dadas por $x_1,\cdots,x_n:I\to \Bbb R^n$. Equivalem as afirmações:
+\begin{enumerate}
+    \item $X$ é uma matriz fundamental de $x' = A(t)x$.
+    \item $detX(t_0) \neq 0$ para algum $t_0 \in I$.
+    \item $x_1(t_0),\cdots,x_n(t_0)$ é uma base do $\Bbb R^n$ para algum $t_0 \in I$.
+    \item $detX(t) \neq 0$ para todo $t \in I$.
+\end{enumerate}
+\end{6}
+\begin{proof}
+Primeiro, note que uma matriz $X$ é invertível se, e somente se, possui colunas linearmente independentes. Portanto, valem as seguintes equivalências: $X$ é matriz fundamental $\iff x_1,\cdots,x_n$ são L.I. em $C^1(I,\Bbb R^n) \iff \exists t_0\in I;\ x_1(t_0),\cdots,x_n(t_0)$ são L.I. em $\Bbb R^n \iff \exists t_0\in I;\ X(t_0)$ possui colunas L.I. $\iff \exists t_0\in I;\ X(t_0)$ é invertível $\iff \exists t_0\in I;\ \det X(t_0) \neq 0$. Então, as três primeiras afirmações são equivalentes. Suponhamos que não vale a quarta afirmação, isto é, existe $t^*\in I$ tal que $X(t^*)=0$. Pela unicidade, $X$ é a solução trivial donde $X(t)=0,\ \forall t\in I$. Em particular, $X(t_0)=0$ contradizendo a segunda afirmação. Logo, a quarta afirmação deve valer.
+\end{proof}
+Pondo $X(t_0) = I_d$ onde $\det I_d \neq 0$, vemos que toda equação homogênea $x'=A(t)x$ possui matriz fundamental.
+
+Seja $X:I\to M_{n\times n}(\Bbb R)$ uma matriz fundamental de $x' = A(t)x$. O resolvente de $x'=A(t)x$ é uma função $R:I\times I\to M_{n\times n}(\Bbb R)$, onde $R(t,u)=X(t)(X(u))^{-1}$.
+
+Propriedades do Resolvente:
+\begin{itemize}
+    \item $R(t,t)= I_d,\ \forall t \in I$\\
+    Prova: $R(t,t)=X(t)(X(t))^{-1}=I_d$
+    \item $R(t,u)R(u,z) = R(t,z)$\\
+    Prova: $R(t,u)R(u,z)=X(t)(X(u))^{-1}X(u)(X(z))^{-1}=X(t)I_d(X(z))^{-1}=X(t)(X(z))^{-1}=R(t,z)$
+    \item $\dfrac{\partial R(t,u)}{\partial t} = A(t)R(t,u)$\\
+    Prova: $\dfrac{\partial R(t,u)}{\partial t} =\dfrac{\partial (X(t)(X(u))^{-1})}{\partial t}=X'(t)(X'(u))^{-1}=A(t)X(t)(X(u))^{-1}=A(t)R(t,u)$
+    \item $\dfrac{\partial R(t,u)}{\partial u} = -R(t,u)A(u)$\\
+    prova: Derivando $X(t)(X(t))^{-1}=I_d$, temos que $X(t)(X(t)^{-1})'=-X'(t)(X(t))^{-1} \implies (X(t)^{-1})'=-(X(t))^{-1}X'(t)(X(t))^{-1}$. Então, $\dfrac{\partial R(t,u)}{\partial u} = \dfrac{\partial (X(t)(X(u))^{-1})}{\partial u} = -X(t)(X(u))^{-1}X'(u)(X(u))^{-1}=-R(t,u)A(u)$.
+\end{itemize}
+\begin{7}
+Seja $X:I\to M_{n\times n}(\Bbb R)$ uma matriz fundamental de $x'=A(t)x$ e sejam $t_0 \in I$ e $x_0 \in \Bbb R^n$ dados. Então, $$x(t) = R(t,t_0)x_0 + \int^t_{t_0} R(t,u)b(u)du,\ \forall t \in I$$ é a unica solução de $x' = A(t)x+b(t)$ tal que $x(t_0)=x_0$.
+\end{7}
+\begin{proof}
+Seja $x$ a função definida como acima. Para $t=t_0$, temos que $x(t_0)=R(t_0,t_0)x_0=x_0$. Derivando $x$ em relação a variável $t$, temos que para todo $t\in I$ vale $x'(t)=A(t)R(t,t_0)x_0 + R(t,t)b(t) + \int^t_{t_0} A(t)R(t,u)b(u)du$ pela regra da cadeia. Mas, $\int^t_{t_0} A(t)R(t,u)b(u)du=x(t)-R(t,t_0)x_0 \implies \int^t_{t_0} A(t)R(t,u)b(u)du=A(t)x(t)-A(t)R(t,t_0)x_0$. Então, $x'(t)=A(t)x(t)+b(t)$ verificando a existência de solução. A unicidade segue do fato de haver solução trivial apenas quando $x_0=0$
+\end{proof}
+\subsection{Exponencial de Matrizes}
+Considere uma matriz $A\in M_{n\times n}(\Bbb R)$ e a norma euclideana $|\cdot|$ de $\Bbb R^n$. A norma de operador é definida por $$||A||=\sup_{|x|\leq1}|Ax|$$ 
+Note que $Ax \in \Bbb R^n$, pois $x\in \Bbb R^n$ e $\Bbb R^n \simeq M_{n\times n}(\Bbb R)$.
+
+Vamos verificar que esta é realmente uma norma: Seja $x \in \Bbb R^n$ tal que $|x|\leq 1$. 
+\begin{enumerate}
+    \item $|(\lambda A)x|=|\lambda(Ax)|=|\lambda||Ax| \implies \lVert(\lambda A)x||=|\lambda|||Ax||$
+    \item $|(A+B)x|=|Ax+Bx| \leq |Ax|+|Bx| \leq \lVert A\rVert + \lVert B\rVert \implies \lVert A+B\rVert \leq \lVert A\rVert+\lVert B\rVert$
+    \item $\lVert A\rVert=0 \implies |Ax|=0 \implies Ax =0 \implies Ae_j=0,\ j=1,\cdots,n \implies A=0$.
+    
+    $A=0 \implies Ae_j=0 \implies Ax=A(\sum\alpha_i e_i)=\sum\alpha_i(Ae_i)=\sum\alpha_i 0=0 \implies|Ax|=0 \implies \lVert A\rVert=0$. Então, $\lVert A\rVert=0 \iff A=0$.
+\end{enumerate}
+\begin{8}
+Dados $A,B\in M_{n\times n}(\Bbb R)$, valem
+\begin{enumerate}
+    \item $|Ax|\leq\lVert A\rVert|x|,\ \forall x\in \Bbb R^n$.
+    \item $\lVert AB\rVert\leq \lVert A \rVert \lVert B\rVert$
+\end{enumerate}
+\end{8}
+\begin{proof}
+\begin{enumerate}
+    \item Dado $x\in \Bbb R^n$ com $x\neq 0$, tem-se $|\dfrac{x}{|x|}|=1$. Então, $\dfrac{|Ax|}{|x|}=|A\frac{x}{|x|}|\leq \lVert A\rVert \implies |Ax|\leq\lVert A\rVert |x|$.
+    \item $|(AB)x|=|A(Bx)|\leq \lVert A\rVert |Bx| \leq \lVert A\rVert \lVert B\rVert |x|,\ \forall x\in \Bbb R^n$. Se $|x|\leq 1$, então $|(AB)x|\leq \lVert A\rVert \lVert B\rVert$. Tomando o supremo, vale $\lVert AB\rVert \leq \lVert A\rVert \lVert B\rVert$.
+\end{enumerate}
+\end{proof}
+
+Pondo $B=A$ e aplicando a segunda afirmação acima repetidas vezes, vale $\lVert A^m\rVert \leq \lVert A\rVert^m,\ \forall m\in \Bbb N$, onde escrevemos $A^0=I_d,\ A^1=A$ e $A^{m+1}=A^mA$. Com efeito, temos $\lVert A^0\rVert = \lVert I\rVert = \lVert A\rVert^0=1$. Supondo $\lVert A^m\rVert \leq \lVert A\rVert^m$, segue-se $\lVert A^{m+1}\rVert=\lVert A^mA\rVert \leq \lVert A^m\rVert \lVert A\rVert \leq \lVert A\rVert^m \lVert A\rVert = \lVert A\rVert^{m+1}$.
+
+A matriz exponencial de uma matriz $A\in M_{n\times n}(\Bbb R)$ é 
+$$e^A=I_d+\dfrac{1}{2!}A^2+\dfrac{1}{3!}A^3+\cdots+\dfrac{1}{j!}A^j+\cdots=\sum^{\infty}_{j=0}\dfrac{1}{j!}A^j$$
+Para que isto fique bem definido precisamos saber se esta série converge.
+
+Dizemos que uma série $\sum x_n$ em $\Bbb R^n$ (ou $M_{n\times m}(\Bbb R) \simeq \Bbb R^{nm}$) é absolutamente convergente segundo a norma $|\cdot|$ se a série numérica $\sum|x_n|$ é convergente. Toda série absolutamente convergente é convergente. Vejamos que $\sum\dfrac{1}{j!}A^j$ é absolutamente convergente. Pondo $S_n = \sum^{j=n}_{j=0}\lVert \dfrac{1}{j!}A^j\rVert$, usando as propriedades acima, temos $S_n\leq \sum^{j=n}_{j=0}\dfrac{1}{j!}\lVert A\rVert^j$. Como o termo á direita da desigualdade converge com $\lim\sum\dfrac{1}{j!}\lVert A\rVert^j=e^{\lVert A\rVert}$, temos que $S_n$ é limitada. Então, $S_n$ é uma sequência monótona e limitada, logo convergente. Portanto, podemos concluir que $\sum\dfrac{1}{j!}A^j$ é absolutamente convergente segundo a norma $\lVert \cdot\rVert$, ou seja $\sum\dfrac{1}{j!}A^j$ converge. Assim, a exponencial $e^A$ está bem definida para qualquer matriz $A\in M_{n\times n}(\Bbb R)$.
+
+Exemplo: Calculo da exponencial de uma matriz diagonal 
+$$D=diag(\lambda_1,\cdots,\lambda_n)=\begin{bmatrix}
+\lambda_1 & 0 & \cdots & 0\\
+0 & \lambda_2 & 0 & \vdots\\
+\vdots & 0 & \ddots & 0\\
+0 & \cdots & 0 &\lambda_n
+\end{bmatrix}$$
+Note que $D^j=diag(\lambda^j_1,\cdots,\lambda^j_n),\ \forall j\in \Bbb N$. Assim, $e^D=\sum\dfrac{1}{j!}D^j=\sum\dfrac{1}{j!}diag(\lambda^j_1,\cdots,\lambda^j_n)=diag(\sum\dfrac{1}{j!}\lambda^j_1,\cdots,\sum\dfrac{1}{j!}\lambda^j_n)=diag(e^{\lambda_1},\cdots,e^{\lambda_n})$. Em particular, $e^0=I_d$ e $e^{I_d}=diag(e,\cdots,e)=eI_d$. 
+\begin{9}
+Dados uma matriz $A\in M_{n\times n}(\Bbb R)$ e $x_0 \in \Bbb R^n$, os caminhos $t\to e^{tA}$ em $M_{n\times n}(\Bbb R)$ e $t\to e^{tA}x_0$ em $\Bbb R^n$ são deriváveis com
+$$\dfrac{d(e^{tA})}{dt} = Ae^{tA} \in M_{n\times n}(\Bbb R) \text{ e } \dfrac{d(e^{tA}x_0)}{dt}=Ae^{tA}x_0 \in \Bbb R^n$$
+\end{9}
+Precisaremos de dois resultados para demonstrar a proposição:
+\begin{enumerate}
+    \item Para cada $A\in M_{n\times n}(\Bbb R)$, valem $\lVert e^A\rVert \leq e^{\lVert A\rVert}$, $\lVert e^A-I_d\rVert \leq e^{\lVert A\rVert}-1\leq \lVert A\rVert e^{\lVert A\rVert}$ e $\lVert e^A-I_d-A\rVert \leq e^{\lVert A\rVert}-1-\lVert A\rVert \leq \lVert A\rVert^2e^{\lVert A\rVert}$.
+    \begin{proof}
+    Temos que,
+    \begin{itemize}
+        \item $S_n \leq \sum^{j=n}_{j=0}\dfrac{1}{j!}\lVert A\rVert^j \implies \lim S_n \leq e^{\lVert A\rVert}$
+        \item $\lVert \sum^{j=n}_{j=0}A^j\rVert \leq \sum^{j=n}_{j=0}\lVert \dfrac{1}{j!}A^j\rVert = S_n$
+    \end{itemize}
+    Segue-se, $\lVert e^A\rVert = \lVert \lim\sum\dfrac{1}{j!}A^j\rVert=\lim\lVert \sum\dfrac{1}{j!}A^j\rVert \leq \lim S_n \leq e^{\lVert A\rVert}$.
+    
+    Vejamos que $\lVert e^A-I_d\rVert \leq e^{\lVert A\rVert}-1\leq \lVert A\rVert e^{\lVert A\rVert}$. Tem-se, $\lVert\sum^{j=n}_{j=0}\dfrac{1}{j!}A^j-I_d\rVert\leq\sum^{j=n}_{j=1}\dfrac{1}{j!}\lVert A\rVert^j=\sum^{j=n}_{j=0}\dfrac{1}{j!}\lVert A\rVert^j - 1 = \lVert A\rVert\sum^{j=n}_{j=1}\dfrac{1}{j!}\lVert A\rVert^{j-1} \leq \lVert A\rVert\sum^{j=n}_{j=1}\dfrac{1}{(j-1)!}\lVert A\rVert^{j-1}$ pois $\dfrac{1}{j!}\leq\dfrac{1}{(j-1)!}$. "Passando" o limite, temos $\lVert e^A-I_d\rVert\leq e^{\lVert A\rVert} - 1 \leq \lVert A\rVert e^{\lVert A\rVert}$. A última desigualdade se mostra de modo análogo.
+    \end{proof}
+    \item Seja $X:\Bbb R\to M_{n\times n}(\Bbb R)$ um caminho contínuo de matrizes que é derivável em $0\in \Bbb R$. Suponha que $X(0)=I_d$ e $X(t+u)=X(t)X(u),\ \forall t,u\in \Bbb R$. Então, $X$ é derivável em cada $t\in \Bbb R$ com $X'(t)=X'(0)X(t)$.
+    \begin{proof}
+    Dado $t\in \Bbb R$, temos $X'(t)=\lim_{u\to0}\dfrac{X(u+t)-X(t)}{u}=\lim_{u\to0}\dfrac{X(u)X(t)-X(0)X(t)}{u}=\lim_{u\to0}\dfrac{X(u)-X(0)}{u}X(t)=X'(0)X(t)$.
+    \end{proof}
+\end{enumerate}
+Demonstração da proposição: Sejam $A\in M_{n\times n}(\Bbb R)$ e $t\in R$. Escrevendo $X(t)=e^{tA}$, temos $X(0)=e^0=I_d$. Afirmamos que, $X(t+u)=X(t)X(u),\ \forall t,u\in \Bbb R$. Com efeito, pela lei do binômio, temos
+$$\dfrac{1}{j!}(tA+uA)^j=\dfrac{1}{j!}(t+u)^jA^j=(\sum_{r+s=j}\dfrac{t^r}{r!}\dfrac{u^s}{s!})A^j=\sum_{r+s=j}\dfrac{t^r}{r!}A^r\dfrac{u^s}{s!}A^s$$ 
+e portanto, $e^{tA+uA}=\sum^{\infty}_{j=0}\dfrac{1}{j!}(tA+uA)^j=\sum^{\infty}_{j=0}\sum_{r+s=j}\dfrac{1}{r!}(tA)^r\dfrac{1}{s!}(uA)^s$. Então, $e^{tA+uA}$ é o produto de Cauchy das matrizes absolutamente convergentes $e^{tA}=\sum^{\infty}_{r=0}\dfrac{1}{r!}(tA)^r$ e $e^{uA}=\sum^{\infty}_{s=0}\dfrac{1}{s!}(uA)^s$, ou seja, $e^{tA+uA}$ converge e $e^{tA+uA}=e^{tA}e^{uA}$. Assim, vale $X(t+u)=e^{(t+u)A}=e^{tA+uA}=e^{tA}e^{uA}=X(t)X(u)$. Agora, vejamos que $X'(0)=A$. Considere $0<|t|<1$. Pelo primeiro item, temos que $\lVert \frac{1}{t}(e^{tA}-I_d)-A\rVert=\frac{1}{|t|}\lVert e^{tA}-I_d-tA\rVert\leq\frac{1}{|t|}\lVert tA\rVert^2e^{\lVert A\rVert}=|t|\lVert A\rVert^2e^{|t|\lVert A\rVert}\leq|t|\lVert A\rVert^2e^{\lVert A\rVert}$ pois $e^{|t|\lVert A\rVert}\leq e^{\lVert A\rVert}$. "Passando" o limite, segue que $X'(0)=\lim_{t\to0}\dfrac{X(t)-X(0)}{t}=\lim_{t\to0}\dfrac{e^{tA}-I_d}{t}=A$. Pelo segundo item, $X$ é derivável e $X'(t)=AX(t)$, ou seja, $\dfrac{d(e^{tA})}{dt}=Ae^{tA}$. Por outro lado, dado $x_0 \in \Bbb R^n$ a função $x(t)=X(t)x_0=e^{tA}x_0$ é derivável com $x'(t)=X'(t)x_0=AX(t)x_0=Ae^{tA}x_0$.
+\begin{10}
+Sejam $A\in M_{n\times n}(\Bbb R)$ e $x_0\in \Bbb R^n$. O caminho $x(t)=e^{tA}x_0,\ t\in \Bbb R$, define a única solução de $x'=Ax$ com condição inicial $x(0)=x_0$.
+\end{10}
+\begin{11}
+Se $A,B,Q\in M_{n\times n}(\Bbb R)$ são tais que $AQ=QB$, então $e^AQ=Qe^B$. Em particular, se $Q$ é invertível, então $A=QBQ^{-1}$ e $e^A=e^{QBQ^{-1}}=Qe^BQ^{-1}$.
+\end{11}
+\begin{proof}
+Primeiro, vejamos que $A^jQ=QB^j,\ \forall j\in \Bbb N$. Temos, $AQ=B$ e $A^jQ=QB^j \implies A^{j+1}Q=A^jAQ=A^jQB=QB^jB=QB^{j+1}$ logo vale por indução. Segue-se, $e^AQ=(\sum\dfrac{1}{j!}A^j)Q=\sum\dfrac{1}{j!}A^jQ=\sum\dfrac{1}{j!}QB^j=Q(\sum\dfrac{1}{j!}b^j)=Qe^B$.
+\end{proof}
+Os teoremas acima são necessários para estabelecer propriedades para exponencial de matrizes de modo análogo ao usual em $\Bbb R$, como $e^Ae^B=e^{A+B}=e^Be^A$ e $(e^A)^{-1}=e^{-A}$.
+\begin{12}
+Sejam $A,B\in M_{n\times n}(\Bbb R)$, temos:
+\begin{enumerate}
+    \item Se $AB=BA$, então $e^Ae^B=e^{A+B}=e^Be^A$.
+    \item A matriz $e^A$ é invertível, com $(e^A)^{-1}=e^{-A}$.
+\end{enumerate}
+\end{12}
+\begin{proof}
+Seja $t\in \Bbb R$. Se $AB=BA$, então $B(tA)=t(BA)=t(AB)=(tA)B$, e pelo teorema anterior, temos $Be^{tA}=e^{tA}B$. Fixando $x_ 0 \in \Bbb R^n$, definimos $x(t)=e^{tA}e^{tB}x_ 0$. Pela regra da derivada do produto, $x'(t)=Ae^{ta}e^{tB}x_0 + e^{tA}Be^{tB}x_0=Ax(t)+Bx(t)=(A+B)x(t)$. Então, $x(t)$ é solução de $x'=(A+B)x$ com condição inicial $x(0)=x_0$. Pelo teorema acima, $x(t)=e^{t(A+B)}x_0=e^{tA}e^{tB}x_0$. Tomando $t=1$, vale $e^{A+B}x_0=e^Ae^Bx_0$. Pondo $x_0=e_j$, fica evidente que as colunas de $e^{A+B}$ e $e^Ae^B$ são as mesmas, isto é, que $e^{A+B}$ e $e^Ae^B$ são a mesma matriz e $e^{A+B}=e^Ae^B$.
+
+Em particular, $e^Ae^{-A}=e^{A-A}=e^0=I_d$, ou seja, $(e^A)^{-1}=e^{-A}$.
+\end{proof}
+\subsection{Controlabilidade}
+Sejam $A,B:[0,T] \to M_{n\times n}(\Bbb R)$ funções contínuas no intervalo $[0,T] \subset \Bbb R$. Diremos que o sistema 
+\begin{center}
+    $$
+    \begin{cases}
+    x'(t)=A(t)x(t)+B(t)u(t),\ \forall t\in [0,T] \\
+    x(0)=x_0
+    \end{cases}
+    $$
+\end{center}
+é controlável se para todo $x_0,x_T\in \Bbb R^n$, existe função $u:[0,T]\to \Bbb R^m$ contínua tal que $x(T)=x_T$, onde $x=x(t)$ é a solução do sistema. Chamaremos $u$ de controle e diremos que $u$ leva o sistema do estado inicial $x_0$ em $t=0$ para o estado final $x_T$ em $t=T$.
+
+Exemplo: Seja uma função $f:[0,T]\to \Bbb R$ contínua tal que $f(t)\neq 0,\ \forall t\in[0,T]$. 
+\begin{center}
+    $\begin{cases}
+    x'=f(t)u\\ x(0)=x_0
+    \end{cases}$
+\end{center}
+Então, o sistema é controlável. Com efeito, dado $x_T\in[0,T]$ tome $u=\dfrac{x_T-x_0}{Tf(t)}$. Então, $x(T)-x_0=\int^T_{0}f(t)u(t)dt=\int^T_0\dfrac{x_T-x_0}{T}dt=T\dfrac{x_T-x_0}{T}=x_T-x_0 \implies x(T)=x_T$. Logo, o sistema é controlável.
+
+Exemplo: Considere as matrizes
+\begin{center}
+    $A = \begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{bmatrix}$
+    e
+    $B = \begin{bmatrix}
+    1 \\
+    0
+    \end{bmatrix}$
+\end{center}
+O sistema $x'=Ax+Bu$ pode ser escrito como
+\begin{center}
+    $\begin{cases}
+    x'_1=x_1+u\\ x'_2=x_{2_0}e^t
+    \end{cases}$
+\end{center}
+com dado inicial $(x_{1_0},x_{2_0})$. Este sistema não é controlável pois qualquer controle $u$ que escolhermos não influencia no comportamento de $x_2$ que é determinado por $x_{2_0}$.
+\section{Trabalhos Futuros}
+Os próximos passos serão estudar dois resultados importantes na teoria de Controle tais como o Critério da Integral e o Critério de Kalman. Em seguida, o aluno estudará Controle Ótimo nos tópicos Problema de Tempo Mínimo e Princípio do Máximo de Pontryagin, e finalmente, o exemplo do carro com dois motores.
+
+\addcontentsline{toc}{section}{Bibliografia}
+\section*{Bibliografia}
+\footnotesize{
+
+\noindent E. CERPA, P. GAJARDO, Control y optimización de sistemas dinámicos.\\
+C. I. Doering, A. O. Lopes, Equações Diferenciais Ordinárias.\\
+J.-M. Coron, Control and Nonlinearity. \\
+J. Baumeister, A. Leitão, Introdução à Teoria de Controle e Programação Dinâmica.
+}
+\end{document}
